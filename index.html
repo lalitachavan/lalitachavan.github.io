@@ -1,49 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lalita Chavan Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/main.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: #222;
+      background-color: #FFFCFA;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      flex-wrap: wrap;
+      background-color: transparent;
+      transition: background-color 0.5s ease;
+    }
+
+    .scrolled {
+      background-color: #FFFCFA;
+    }
+
+    .logo img {
+      height: 80px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 3rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #222;
+      font-weight: 700;
+    }
+
+    .hero {
+      position: relative;
+      padding: 11rem 11rem 4rem 11rem;
+      background-color: #FFFCFA;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .paint-blob {
+      position: absolute;
+      background-repeat: no-repeat;
+      background-size: contain;
+      z-index: 0;
+    }
+
+    .blob-top-left {
+      top: -380px;
+      right: -175px;
+      width: 1000px;
+      height: 1000px;
+      background-image: url('assets/vectors/Paint\ blob\ top\ right.svg');
+    }
+
+    .blob-bottom-left {
+      bottom: -280px;
+      left: -40px;
+      width: 500px;
+      height: 500px;
+      background-image: url('assets/vectors/Paint\ blob\ bottom\ left.svg');
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      font-family: 'EB Garamond', serif;
+    }
+
+    .hero-text h1 {
+      font-size: 6rem;
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -1px;
+    }
+
+    .hero-text em {
+      font-style: italic;
+      display: inline-block;
+    }
+
+    .hero-text em span {
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+
+    .hero-text em:hover span:nth-child(1) { color: #872654; transition-delay: 0s; }
+    .hero-text em:hover span:nth-child(2) { color: #872654; transition-delay: 0.05s; }
+    .hero-text em:hover span:nth-child(3) { color: #872654; transition-delay: 0.1s; }
+    .hero-text em:hover span:nth-child(4) { color: #872654; transition-delay: 0.15s; }
+    .hero-text em:hover span:nth-child(5) { color: #872654; transition-delay: 0.2s; }
+    .hero-text em:hover span:nth-child(6) { color: #872654; transition-delay: 0.25s; }
+    .hero-text em:hover span:nth-child(7) { color: #872654; transition-delay: 0.3s; }
+    .hero-text em:hover span:nth-child(8) { color: #872654; transition-delay: 0.35s; }
+
+    .intro {
+      margin-top: 3.5rem;
+      max-width: 700px;
+      font-family: 'Lato', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 32px;
+    }
+
+    .work-section {
+      background: #F2E2E7;
+      padding: 4rem;
+    }
+
+    .work-section h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .work-section p {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+
+    }
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .project {
+      background-color: #ddd;
+      flex: 1 1 calc(50% - 2rem);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .project-header {
+      padding: 1.5rem;
+    }
+
+    .project-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .project-subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #fff;
+      margin-top: 0.25rem;
+    }
+
+    .project img {
+      width: 100%;
+      display: block;
+    }
+
+    .dark-blue { background-color: #3c4a77; }
+    .indigo { background-color: #464577; }
+    .maroon { background-color: #7a2e54; }
+    .coral { background-color: #f1785c; }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    footer div {
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .projects {
+        flex-direction: column;
+      }
+
+      .project {
+        flex: 1 1 100%;
+      }
+
+      .hero {
+        padding: 5rem 1.5rem 3rem 1.5rem;
+      }
+
+      .intro {
+        font-size: 0.95rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 1.6rem;
+      }
+
+      .intro {
+        font-size: 0.9rem;
+      }
+
+      .project-title {
+        font-size: 1rem;
+      }
+    }
+  </style>
+  <script>
+    window.addEventListener('scroll', function () {
+      const header = document.querySelector('header');
+      const workSection = document.querySelector('#projects');
+      const workTop = workSection.getBoundingClientRect().top;
+      if (workTop <= 80) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
 </head>
 <body>
   <header>
-    <div class="logo"><img src="assets/logo/Logo blue.svg" alt="Logo"></div>
+    <div class="logo">
+      <img src="assets/logo/Logo wine.svg" alt="Lalita Chavan Logo" />
+    </div>
     <nav>
       <a href="#">Home</a>
-      <a href="#">Projects</a>
-      <a href="#">About</a>
-      <a href="#">Resume</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#resume">Resume</a>
     </nav>
   </header>
 
   <section class="hero">
+    <div class="paint-blob blob-top-left"></div>
+    <div class="paint-blob blob-bottom-left"></div>
+    <div class="hero-text">
+      <h1>Design does not start with wireframes. It starts with <em>
+        <span>e</span><span>m</span><span>p</span><span>a</span><span>t</span><span>h</span><span>y</span><span>.</span>
+      </em></h1>
+      <p class="intro">Hi, I am Lalita Chavan. I craft experiences that start with empathy, evolve through iterations and delight in the details.</p>
+    </div>
+  </section>
+
+  <section class="work-section" id="projects">
+    <h2>My work</h2>
+    <p>Pratt Institute (2022 - 2024)</p>
+    <div class="projects">
+      <div class="project dark-blue">
+        <div class="project-header">
+          <div class="project-title">WanderBot</div>
+          <div class="project-subtitle">Conversational UX 2024</div>
+        </div>
+        <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
+      </div>
+      <div class="project indigo">
+        <div class="project-header">
+          <div class="project-title">Purrfect Pixels</div>
+          <div class="project-subtitle">Animal Experience Design 2024</div>
+        </div>
+        <img src="assets/images/Voiceflow hero image.png" alt="Purrfect Pixels Screenshot" />
+      </div>
+      <div class="project maroon">
+        <div class="project-header">
+          <div class="project-title">WanderBot</div>
+          <div class="project-subtitle">Conversational UX 2024</div>
+        </div>
+        <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
+      </div>
+      <div class="project coral">
+        <div class="project-header">
+          <div class="project-title">Purrfect Pixels</div>
+          <div class="project-subtitle">Animal Experience Design 2024</div>
+        </div>
+        <img src="assets/images/Voiceflow hero image.png" alt="Purrfect Pixels Screenshot" />
+      </div>
+    </div>
+  </section>
+
+  <footer>
     <div>
-      Design does not <br>
-      start with wireframes. It <br>
-      starts with <span class="empathy-group">
-        <span class="highlight">empathy</span>
-        <img src="https://em-content.zobj.net/source/apple/391/woman-light-skin-tone_1f469-1f3fb_1f3fb.png" alt="girl" class="emoji girl" width="40">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/81_INF_CAT.svg/512px-81_INF_CAT.svg.png" alt="cat" class="emoji cat" width="60">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Monstera_deliciosa_leaf.svg/512px-Monstera_deliciosa_leaf.svg.png" alt="plant" class="emoji plant" width="50">
-      </span>
+      <strong>Contact me</strong><br />
+      a4.lalita.chavan@gmail.com
     </div>
-
-    <div class="intro">
-      Hi, I am Lalita Chavan. I craft experiences that start with empathy, evolve through iterations and delight in the details.
+    <div>
+      <strong>Connect with me</strong><br />
+      LinkedIn
     </div>
-  </section>
-
-  <section class="projects">
-    <h2>Projects</h2>
-    <div class="projects-grid">
-      <div class="project-tile tall"></div>
-      <div class="project-tile"></div>
-      <div class="project-tile"></div>
-      <div class="project-tile wide"></div>
+    <div>
+      <strong>Go to top</strong>
     </div>
-  </section>
-
+  </footer>
 </body>
 </html>
