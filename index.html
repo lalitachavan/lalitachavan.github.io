@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lalita Chavan Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
@@ -17,7 +18,7 @@
 
     body {
       font-family: 'Lato', sans-serif;
-      color: #222;
+      color: #0D0D0D;
       background-color: #FFFCFA;
     }
 
@@ -33,7 +34,26 @@
       padding: 2rem;
       flex-wrap: wrap;
       background-color: transparent;
-      transition: background-color 0.5s ease;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hero-bg {
+      background-color: transparent;
+    }
+
+    .work-bg {
+      background-color: rgba(255, 252, 250, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-bg {
+      background-color: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-bg nav a {
+      color: #fff;
+      transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .scrolled {
@@ -42,6 +62,12 @@
 
     .logo img {
       height: 80px;
+      transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .work-bg .logo img,
+    .footer-bg .logo img {
+      height: 50px;
     }
 
     nav {
@@ -53,7 +79,7 @@
 
     nav a {
       text-decoration: none;
-      color: #222;
+      color: #0D0D0D;
       font-weight: 700;
     }
 
@@ -77,15 +103,7 @@
       right: -175px;
       width: 1000px;
       height: 1000px;
-      background-image: url('assets/vectors/Paint\ blob\ top\ right.svg');
-    }
-
-    .blob-bottom-left {
-      bottom: -280px;
-      left: -40px;
-      width: 500px;
-      height: 500px;
-      background-image: url('assets/vectors/Paint\ blob\ bottom\ left.svg');
+      background-image: url('assets/vectors/paintBlobs/Paint\ blob\ top\ right.svg');
     }
 
     .hero-text {
@@ -131,8 +149,7 @@
     }
 
     .work-section {
-      background: #F2E2E7;
-      padding: 4rem;
+      padding: 4rem 8rem;
     }
 
     .work-section h2 {
@@ -147,7 +164,23 @@
       font-size: 1.5rem;
       font-weight: 400;
       margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
+    .graduation-icon,
+    .work-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .racs-projects {
+      margin-top: 4rem;
+    }
+
+    .monash-projects {
+      margin-top: 4rem;
     }
 
     .projects {
@@ -157,40 +190,221 @@
     }
 
     .project {
-      background-color: #ddd;
       flex: 1 1 calc(50% - 2rem);
-      border-radius: 0.5rem;
+      max-width: calc(50% - 1rem);
+      border-radius: 1rem;
       overflow: hidden;
+      position: relative;
+      min-height: 550px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .project-front,
+    .project-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.4s ease;
+    }
+
+    .project-front {
+      opacity: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project:hover .project-front {
+      opacity: 0;
+    }
+
+    .project.flipped .project-front {
+      opacity: 0;
+    }
+
+    .project-back {
+      opacity: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project:hover .project-back {
+      opacity: 1;
+    }
+
+    .project.flipped .project-back {
+      opacity: 1;
     }
 
     .project-header {
-      padding: 1.5rem;
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-meta {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #333;
+      align-self: flex-start;
+      margin-bottom: 1rem;
     }
 
     .project-title {
       font-family: 'EB Garamond', serif;
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 400;
-      color: #fff;
+      color: #0D0D0D;
+      margin-bottom: 0.5rem;
     }
 
     .project-subtitle {
       font-family: 'Lato', sans-serif;
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 400;
-      color: #fff;
-      margin-top: 0.25rem;
+      color: #323232;
+      margin-bottom: 1rem;
     }
 
-    .project img {
-      width: 100%;
+    .project-category {
+      background: rgba(255, 255, 255, 0.9);
+      color: #872654;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      text-transform: none;
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      z-index: 2;
+    }
+
+    .project-back-content {
+      flex-grow: 1;
+    }
+
+    .project-back h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #0D0D0D;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-back h4 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0D0D0D;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-back p {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #323232;
+      margin-bottom: 1rem;
+    }
+
+    .project-back-meta {
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-tags {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #872654;
+    }
+
+    .read-more-btn {
+      background-color: #872654;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .read-more-btn:hover {
+      background-color: #6b1e42;
+    }
+
+    .project-image {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      width: 70%;
+      height: 70%;
+      border-radius: 0.5rem 0 0 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #d3d3d3;
+    }
+
+    .project-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
       display: block;
+      border-radius: 0.5rem;
     }
 
-    .dark-blue { background-color: #3c4a77; }
-    .indigo { background-color: #464577; }
-    .maroon { background-color: #7a2e54; }
-    .coral { background-color: #f1785c; }
+    .wanderbot { 
+      background: #F8E9DF;
+    }
+    
+    .purrfect { 
+      background: #E1EDF9;
+    }
+    
+    .ewaste { 
+      background: #E1EDF9;
+    }
+    
+    .airpals { 
+      background: #E1EDF9;
+    }
+
+    .cpd { 
+      background: #F9F4DF;
+    }
+
+    .tmp { 
+      background: #E1EDF9;
+    }
+
+    .style-guide { 
+      background: #F9F4DF;
+    }
+
+    .monash-app { 
+      background: #E1EDF9;
+    }
+
 
     footer {
       background-color: #000;
@@ -223,6 +437,7 @@
 
       .project {
         flex: 1 1 100%;
+        max-width: 100%;
       }
 
       .hero {
@@ -236,6 +451,26 @@
       nav {
         width: 100%;
         justify-content: space-between;
+      }
+
+      /* Disable hover effects on touch devices */
+      .project:hover .project-front {
+        opacity: 1;
+      }
+
+      .project:hover .project-back {
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+      /* Disable hover effects on touch devices like iPad */
+      .project:hover .project-front {
+        opacity: 1;
+      }
+
+      .project:hover .project-back {
+        opacity: 0;
       }
     }
 
@@ -256,13 +491,67 @@
   <script>
     window.addEventListener('scroll', function () {
       const header = document.querySelector('header');
+      const heroSection = document.querySelector('.hero');
       const workSection = document.querySelector('#projects');
+      const footer = document.querySelector('footer');
+      
+      const heroTop = heroSection.getBoundingClientRect().top;
+      const heroBottom = heroSection.getBoundingClientRect().bottom;
       const workTop = workSection.getBoundingClientRect().top;
-      if (workTop <= 80) {
-        header.classList.add('scrolled');
+      const workBottom = workSection.getBoundingClientRect().bottom;
+      const footerTop = footer.getBoundingClientRect().top;
+      
+      // Remove all section classes
+      header.classList.remove('scrolled', 'hero-bg', 'work-bg', 'footer-bg');
+      
+      // Determine which section the header is over
+      if (heroTop <= 80 && heroBottom > 80) {
+        header.classList.add('hero-bg');
+      } else if (workTop <= 80 && workBottom > 80) {
+        header.classList.add('work-bg');
+      } else if (footerTop <= 80) {
+        header.classList.add('footer-bg');
       } else {
-        header.classList.remove('scrolled');
+        header.classList.add('hero-bg'); // Default to hero background
       }
+    });
+
+    // Touch-friendly project card handling
+    document.addEventListener('DOMContentLoaded', function() {
+      const projects = document.querySelectorAll('.project');
+      
+      projects.forEach(project => {
+        let isFlipped = false;
+        
+        project.addEventListener('click', function(e) {
+          // Check if device supports touch
+          if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            e.preventDefault();
+            
+            // Toggle flip state
+            if (isFlipped) {
+              project.classList.remove('flipped');
+              isFlipped = false;
+            } else {
+              // Remove flipped state from other projects
+              projects.forEach(p => {
+                p.classList.remove('flipped');
+              });
+              
+              project.classList.add('flipped');
+              isFlipped = true;
+            }
+          }
+        });
+        
+        // Reset flip state when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!project.contains(e.target)) {
+            project.classList.remove('flipped');
+            isFlipped = false;
+          }
+        });
+      });
     });
   </script>
 </head>
@@ -281,7 +570,6 @@
 
   <section class="hero">
     <div class="paint-blob blob-top-left"></div>
-    <div class="paint-blob blob-bottom-left"></div>
     <div class="hero-text">
       <h1>Design does not start with wireframes. It starts with <em>
         <span>e</span><span>m</span><span>p</span><span>a</span><span>t</span><span>h</span><span>y</span><span>.</span>
@@ -291,36 +579,272 @@
   </section>
 
   <section class="work-section" id="projects">
-    <h2>My work</h2>
-    <p>Pratt Institute (2022 - 2024)</p>
-    <div class="projects">
-      <div class="project dark-blue">
-        <div class="project-header">
-          <div class="project-title">WanderBot</div>
-          <div class="project-subtitle">Conversational UX 2024</div>
+    <div class="pratt-projects">
+      <p><span class="graduation-icon">🎓</span>Pratt Institute (Sep 2022 - May 2024)</p>
+      <div class="projects">
+        <div class="project wanderbot">
+          <div class="project-front">
+            <div class="project-header">
+              <div>
+                <div class="project-title">WanderBot</div>
+                <div class="project-subtitle">A chatbot designed to help with trip planning and destination recommendations.</div>
+              </div>
+            </div>
+            <div class="project-image">
+              <img src="projects/wanderbot/images/wanderbot hero image.png" alt="WanderBot Screenshot" />
+            </div>
+            <div class="project-category">Conversational UX</div>
+          </div>
+          <div class="project-back">
+            <div class="project-meta">Solo project • 3 months</div>
+            <div class="project-back-content">
+              <h3>WanderBot</h3>
+              <h4>Project goal</h4>
+              <p>Help users effectively create an itinerary based on their requirements.</p>
+              <h4>My role</h4>
+              <p>Bot Design, Prototyping, Testing</p>
+              <h4>Tools used</h4>
+              <p>Figma, Voiceflow</p>
+            </div>
+            <div class="project-back-meta">
+              <div class="project-tags">Conversational UX • UX Design</div>
+              <a href="projects/wanderbot.html" class="read-more-btn">Read more</a>
+            </div>
+          </div>
         </div>
-        <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
+        
+        <!-- HIDDEN FOR NOW - Purrfect Pixels Project
+        <div class="project purrfect">
+          <div class="project-front">
+            <div class="project-header">
+              <div>
+                <div class="project-title">Purrfect Pixels</div>
+                <div class="project-subtitle">An interactive iPad game for cats to engage them through touch-responsive visuals.</div>
+              </div>
+            </div>
+            <div class="project-image">
+              <img src="projects/purrfect pixels/purrfect pixels hero.png" alt="Purrfect Pixels Screenshot" />
+            </div>
+            <div class="project-category">Animal Experience Design</div>
+          </div>
+          <div class="project-back">
+            <div class="project-meta">Group project • 4 months</div>
+            <div class="project-back-content">
+              <h3>Purrfect Pixels</h3>
+              <h4>Project goal</h4>
+              <p>Create an engaging digital experience for animal interaction and wellbeing.</p>
+              <h4>My role</h4>
+              <p>UX Research, Interaction Design, Prototyping</p>
+              <h4>Tools used</h4>
+              <p>Figma, Arduino, Processing</p>
+            </div>
+            <div class="project-back-meta">
+              <div class="project-tags">Animal Experience Design • UX Design</div>
+              <button class="read-more-btn">Read more</button>
+            </div>
+          </div>
+        </div>
+        -->
+        
+        <!-- HIDDEN FOR NOW - E-waste Escapade Project
+        <div class="project ewaste">
+          <div class="project-front">
+            <div class="project-header">
+              <div>
+                <div class="project-title">E-waste Escapade</div>
+                <div class="project-subtitle">A cardgame to create awareness regarding e-waste.</div>
+              </div>
+            </div>
+            <div class="project-image">
+              <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
+            </div>
+            <div class="project-category">Sustainable Interaction Design</div>
+          </div>
+          <div class="project-back">
+            <div class="project-meta">Solo project • 3 months</div>
+            <div class="project-back-content">
+              <h3>E-waste Escapade</h3>
+              <h4>Project goal</h4>
+              <p>Create awareness regarding e-waste in a fun engaging way.</p>
+              <h4>My role</h4>
+              <p>Game design, Graphic design</p>
+              <h4>Tools used</h4>
+              <p>Adobe Illustrator</p>
+            </div>
+            <div class="project-back-meta">
+              <div class="project-tags">Sustainable Interaction Design • Game Design</div>
+              <button class="read-more-btn">Read more</button>
+            </div>
+          </div>
+        </div>
+        -->
+        
+        <div class="project airpals">
+          <div class="project-front">
+            <div class="project-header">
+              <div>
+                <div class="project-title">Airpals case study</div>
+                <div class="project-subtitle">Enhance the order form experience for the Airpals website by conducting a usability study.</div>
+              </div>
+            </div>
+            <div class="project-image">
+              <img src="assets/images/Voiceflow hero image.png" alt="Purrfect Pixels Screenshot" />
+            </div>
+            <div class="project-category">Usability study</div>
+          </div>
+          <div class="project-back">
+            <div class="project-meta">Group project • 4 months</div>
+            <div class="project-back-content">
+              <h3>Airpals case study</h3>
+              <h4>Project goal</h4>
+              <p>Enhance the order form experience for the Airpals website by conducting a usability study.</p>
+              <h4>My role</h4>
+              <p>Usability tester</p>
+              <h4>Tools used</h4>
+              <p>Figma, Google Forms, Google Sheets, Google Docs, Zoom, Doodle</p>
+            </div>
+            <div class="project-back-meta">
+              <div class="project-tags">Usability study</div>
+              <a href="projects/airpals.html" class="read-more-btn">Read more</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="project indigo">
-        <div class="project-header">
-          <div class="project-title">Purrfect Pixels</div>
-          <div class="project-subtitle">Animal Experience Design 2024</div>
+    </div>
+
+    <div class="racs-projects">
+      <p><span class="work-icon">💼</span>Royal Australasian College of Surgeons (Dec 2018 - Sep 2021)</p>
+      <div class="projects">
+        <div class="project cpd">
+          <div class="project-front">
+            <div class="project-header">
+              <div>
+                <div class="project-title">Continuing Professional Development (CPD)</div>
+                <div class="project-subtitle">A mobile application to help surgeons record their professional development activities.</div>
+              </div>
+            </div>
+            <div class="project-image">
+              <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
+            </div>
+            <div class="project-category">UI Design</div>
+          </div>
+          <div class="project-back">
+            <div class="project-meta">Solo project • 3 months</div>
+            <div class="project-back-content">
+              <h3>Continuing Professional Development (CPD)</h3>
+              <h4>Project goal</h4>
+              <p>Help surgeons record their professional development activities with ease.</p>
+              <h4>My role</h4>
+              <p>UX Researcher, UI Designer</p>
+              <h4>Tools used</h4>
+              <p>Adobe XD, Adobe Illustrator</p>
+            </div>
+            <div class="project-back-meta">
+              <div class="project-tags">UX Reasearch • UI Design</div>
+              <button class="read-more-btn">Read more</button>
+            </div>
+          </div>
         </div>
-        <img src="assets/images/Voiceflow hero image.png" alt="Purrfect Pixels Screenshot" />
+        
+        <div class="project tmp">
+          <div class="project-front">
+            <div class="project-header">
+              <div>
+                <div class="project-title">Training Management Platform (TMP)</div>
+                <div class="project-subtitle">Web application to help trainee doctors record and view their training progress.</div>
+              </div>
+            </div>
+            <div class="project-image">
+              <img src="assets/images/Voiceflow hero image.png" alt="Purrfect Pixels Screenshot" />
+            </div>
+            <div class="project-category">UX Research</div>
+          </div>
+          <div class="project-back">
+            <div class="project-meta">Group project • 4 months</div>
+            <div class="project-back-content">
+              <h3>Training Management Platform (TMP)</h3>
+              <h4>Project goal</h4>
+              <p>Conduct user research and gain insights to design wireframes for the web application that helps trainee doctors record and view their training progress. </p>
+              <h4>My role</h4>
+              <p>UX Researcher, UI Designer</p>
+              <h4>Tools used</h4>
+              <p>Adobe XD, Adobe Illustrator</p>
+            </div>
+            <div class="project-back-meta">
+              <div class="project-tags">UX Reasearch • UI Design</div>
+              <button class="read-more-btn">Read more</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- HIDDEN FOR NOW - RACS Digital Style Guide Project
+        <div class="project style-guide">
+          <div class="project-front">
+            <div class="project-header">
+              <div>
+                <div class="project-title">RACS Digital Style Guide</div>
+                <div class="project-subtitle">A style guide for digital assets of the college.</div>
+              </div>
+            </div>
+            <div class="project-image">
+              <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
+            </div>
+            <div class="project-category">UI Design</div>
+          </div>
+          <div class="project-back">
+            <div class="project-meta">Solo project • 3 months</div>
+            <div class="project-back-content">
+              <h3>RACS Digital Style Guide</h3>
+              <h4>Project goal</h4>
+              <p>Create a style guide for the college's digital assets to maintain consistency in branding across the different digital products as well as print assets.</p>
+              <h4>My role</h4>
+              <p>UI Designer</p>
+              <h4>Tools used</h4>
+              <p>Adobe InDesign, Adobe Illustrator</p>
+            </div>
+            <div class="project-back-meta">
+              <div class="project-tags">UI Design</div>
+              <button class="read-more-btn">Read more</button>
+            </div>
+          </div>
+        </div>
+        -->
       </div>
-      <div class="project maroon">
-        <div class="project-header">
-          <div class="project-title">WanderBot</div>
-          <div class="project-subtitle">Conversational UX 2024</div>
+    </div>
+
+    <div class="monash-projects">
+      <p><span class="graduation-icon">🎓</span>Monash University (Jul 2017 - Jun 2019)</p>
+      <div class="projects">
+        <div class="project monash-app">
+          <div class="project-front">
+            <div class="project-header">
+              <div>
+                <div class="project-title">Ideastic</div>
+                <div class="project-subtitle">An ideation card game.</div>
+              </div>
+            </div>
+            <div class="project-image">
+              <img src="assets/images/Voiceflow hero image.png" alt="Monash App Screenshot" />
+            </div>
+            <div class="project-category">Game Design</div>
+          </div>
+          <div class="project-back">
+            <div class="project-meta">Solo project • 3 months</div>
+            <div class="project-back-content">
+              <h3>Ideastic</h3>
+              <h4>Project goal</h4>
+              <p>A card game to assist you in your ideation session.</p>
+              <h4>My role</h4>
+              <p>Game Designer</p>
+              <h4>Tools used</h4>
+              <p>Adobe Illustrator, Adobe InDesign</p>
+            </div>
+            <div class="project-back-meta">
+              <div class="project-tags">Game Design</div>
+              <button class="read-more-btn">Read more</button>
+            </div>
+          </div>
         </div>
-        <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
-      </div>
-      <div class="project coral">
-        <div class="project-header">
-          <div class="project-title">Purrfect Pixels</div>
-          <div class="project-subtitle">Animal Experience Design 2024</div>
-        </div>
-        <img src="assets/images/Voiceflow hero image.png" alt="Purrfect Pixels Screenshot" />
       </div>
     </div>
   </section>

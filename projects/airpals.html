@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Airpals Case Study - Lalita Chavan Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: #0D0D0D;
+      background-color: #FFFFFF;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      flex-wrap: wrap;
+      background-color: #FFFFFF;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 80px;
+      transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 3rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0D0D0D;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0;
+    }
+
+    .main-section {
+      display: flex;
+      height: calc(100vh - 144px);
+      margin-top: 144px;
+    }
+
+    .sidebar {
+      background: #FFFFFF;
+      color: #0D0D0D;
+      width: 50%;
+      padding: 4rem 4rem 4rem 4rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-category-tag {
+      background: #8b2654;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 2rem;
+    }
+
+    .project-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 4rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .project-subtitle {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+    }
+
+    .project-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .detail-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    .detail-content {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .main-content {
+      background-color: #FFFFFF;
+      width: 50%;
+      padding: 0;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content-section {
+      margin-bottom: 0;
+    }
+
+    .content-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #8b2654;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #0D0D0D;
+    }
+
+    .content-section-below {
+      background-color: #FFFFFF;
+      padding: 2rem 8rem;
+      display: flex;
+      gap: 4rem;
+    }
+
+    .content-column-left {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content-column-right {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    footer div {
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .main-section {
+        flex-direction: column;
+      }
+
+      .sidebar,
+      .main-content {
+        width: 100%;
+        padding: 2rem;
+      }
+
+      .content-section-below {
+        padding: 2rem;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .content-column-left,
+      .content-column-right {
+        width: 100%;
+      }
+
+      .sidebar {
+        padding-top: 6rem;
+      }
+
+      .project-title {
+        font-size: 2.5rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../assets/logo/Logo wine.svg" alt="Lalita Chavan Logo" />
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#resume">Resume</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="main-section">
+      <div class="sidebar">
+        <div>
+          <div class="project-category-tag">Usability Study</div>
+          <div class="project-category-tag">Group project</div>
+          <h1 class="project-title">Airpals Case Study</h1>
+          <p class="project-subtitle">Enhance the order form experience for the Airpals website by conducting a usability study.</p>
+          
+          <div class="project-details">
+            <div class="detail-item">
+              <div class="detail-label">My Role</div>
+              <div class="detail-content">Usability Tester</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Team</div>
+              <div class="detail-content">Group Project</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Timeline</div>
+              <div class="detail-content">4 months</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Focus</div>
+              <div class="detail-content">Usability testing and order form optimization</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Tools</div>
+              <div class="detail-content">Figma, Google Forms, Google Sheets, Google Docs, Zoom</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <img src="../projects/airpals/images/airpals hero image.png" alt="Airpals Interface" style="width: 100%; height: 100%; object-fit: contain;" />
+      </div>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Project goal</h2>
+      <p class="content-text" style="margin-bottom: 2rem;">Evaluate the usability of the Airpals website's Order flow and gather feedback on user’s expectations after placing an order.</p>
+      
+      <div style="display: flex; justify-content: center;">
+        <img src="../assets/images/Voiceflow hero image.png" alt="Airpals Usability Study" style="width: 100%; max-width: 1200px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      <p class="content-text" style="text-align: center; margin-top: 1rem; font-style: italic; opacity: 0.8;">Airpals website order form analysis</p>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Project overview</h2>
+      <p class="content-text">
+        The Airpals usability study emerged from the need to optimize the user experience of the order form on the Airpals website. Users were experiencing difficulties completing their orders, leading to high abandonment rates and frustrated customers.
+      </p>
+      
+      <p class="content-text">
+        Our team conducted comprehensive usability testing to identify pain points in the current order form flow. Through systematic testing and analysis, we uncovered key usability issues and provided actionable recommendations to improve the overall user experience and conversion rates.
+      </p>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Research methodology</h2>
+      <p class="content-text">
+        Our approach combined multiple research methods to gain comprehensive insights into user behavior and preferences. We employed both qualitative and quantitative methods to ensure robust findings.
+      </p>
+      
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem; margin-top: 2rem;">Testing Methods</h3>
+      <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">Moderated usability testing sessions via Zoom.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Task-based scenarios to simulate real user journeys.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Post-test interviews to gather qualitative feedback.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Quantitative analysis of completion rates and error patterns.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Comparative analysis with industry best practices.</li>
+      </ul>
+    </div>
+
+    <div class="content-section-below">
+      <div class="content-column-left">
+        <img src="../assets/images/Voiceflow hero image.png" alt="Airpals Testing Results" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+
+      <div class="content-column-right">
+        <div class="content-section">
+          <h2 class="content-title">Key findings</h2>
+          <p class="content-text">
+            Our usability study revealed several critical issues affecting user experience and order completion rates. The most significant findings centered around navigation confusion, form complexity, and unclear error messaging.
+          </p>
+          
+          <p class="content-text">
+            Users struggled with the multi-step form process, particularly in understanding progress indicators and recovering from input errors. These insights formed the foundation for our comprehensive redesign recommendations.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Recommendations & Impact</h2>
+      
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem; margin-top: 1rem;">Key Recommendations</h3>
+      <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">Simplify the form structure by reducing the number of required fields and consolidating related information.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Implement clear progress indicators to help users understand their position in the order process.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Improve error messaging with specific, actionable guidance for form corrections.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Add inline validation to provide immediate feedback on form inputs.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Enhance mobile responsiveness to improve the experience across all device types.</li>
+      </ul>
+      
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem;">Key Learnings</h3>
+      <ul style="margin-left: 1.5rem;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">User testing revealed insights that were not apparent from heuristic evaluation alone, emphasizing the value of direct user feedback.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Small changes in form design can have significant impacts on completion rates and user satisfaction.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Collaborative analysis within the team helped identify patterns and prioritize recommendations effectively.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <strong>Contact me</strong><br />
+      a4.lalita.chavan@gmail.com
+    </div>
+    <div>
+      <strong>Connect with me</strong><br />
+      LinkedIn
+    </div>
+    <div>
+      <strong>Go to top</strong>
+    </div>
+  </footer>
+</body>
+</html>

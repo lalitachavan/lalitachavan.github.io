@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WanderBot - Lalita Chavan Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: #0D0D0D;
+      background-color: #FFFFFF;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      flex-wrap: wrap;
+      background-color: #FFFFFF;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 80px;
+      transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 3rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0D0D0D;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0;
+    }
+
+    .main-section {
+      display: flex;
+      height: calc(100vh - 144px);
+      margin-top: 144px;
+    }
+
+    .sidebar {
+      background: #FFFFFF;
+      color: #0D0D0D;
+      width: 50%;
+      padding: 4rem 4rem 4rem 4rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-category-tag {
+      background: #8b2654;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 2rem;
+    }
+
+    .project-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 4rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .project-subtitle {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+    }
+
+    .project-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .detail-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    .detail-content {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .main-content {
+      background-color: #FFFFFF;
+      width: 50%;
+      padding: 0;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 400px;
+      background-color: #ddd;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-style: italic;
+    }
+
+    .content-section {
+      margin-bottom: 0;
+    }
+
+    .content-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #8b2654;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #0D0D0D;
+    }
+
+    .content-section-below {
+      background-color: #FFFFFF;
+      padding: 2rem 8rem;
+      display: flex;
+      gap: 4rem;
+    }
+
+    .content-column-left {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content-column-right {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .design-process-section {
+      background-color: #FFFFFF;
+      padding: 2rem 8rem;
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .process-content {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .process-icon {
+      width: 120px;
+      height: 120px;
+      background-color: #E8D5E0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+    }
+
+    .process-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #0D0D0D;
+      margin-bottom: 1rem;
+    }
+
+    .process-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #0D0D0D;
+    }
+
+    .process-image {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .parallax-container {
+      position: relative;
+      height: 200vh;
+    }
+
+    .parallax-fixed {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      z-index: 1;
+    }
+
+    .parallax-overlay {
+      position: absolute;
+      top: 100vh;
+      width: 100%;
+      background-color: #FFFFFF;
+      z-index: 2;
+      min-height: 100vh;
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    footer div {
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .main-section {
+        flex-direction: column;
+      }
+
+      .sidebar,
+      .main-content {
+        width: 100%;
+        padding: 2rem;
+      }
+
+      .content-section-below {
+        padding: 2rem;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .content-column-left,
+      .content-column-right {
+        width: 100%;
+      }
+
+      .design-process-section {
+        padding: 2rem;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .process-content,
+      .process-image {
+        width: 100%;
+      }
+
+      .parallax-container {
+        height: auto;
+      }
+
+      .parallax-fixed {
+        position: relative;
+        height: auto;
+      }
+
+      .parallax-overlay {
+        position: relative;
+        top: 0;
+      }
+
+      .sidebar {
+        padding-top: 6rem;
+      }
+
+      .project-title {
+        font-size: 2.5rem;
+      }
+
+      .project-title::after {
+        font-size: 2rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../assets/logo/Logo wine.svg" alt="Lalita Chavan Logo" />
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#resume">Resume</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="main-section">
+      <div class="sidebar">
+        <div>
+          <div class="project-category-tag">Conversational UX</div>
+          <div class="project-category-tag">Solo project</div>
+          <h1 class="project-title">WanderBot</h1>
+          <p class="project-subtitle">A chatbot to help users with trip planning and destination recommendations.</p>
+          
+          <div class="project-details">
+            <div class="detail-item">
+              <div class="detail-label">My Role</div>
+              <div class="detail-content">Bot Design, Prototyping, Testing</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Team</div>
+              <div class="detail-content">Solo Project</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Timeline</div>
+              <div class="detail-content">3 months</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Focus</div>
+              <div class="detail-content">Designing a chatbot that understands user requirements.</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Tools</div>
+              <div class="detail-content">Figma, Voiceflow</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <img src="../projects/wanderbot/images/wanderbot hero image project page.png" alt="WanderBot Interface" style="width: 100%; height: 100%; object-fit: contain;" />
+      </div>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Project goal</h2>
+      <p class="content-text" style="margin-bottom: 2rem;">Help users effectively create an itinerary based on their requirements.</p>
+      
+      <div style="display: flex; justify-content: center;">
+        <img src="../projects/wanderbot/images/voiceflow screenshot.png" alt="WanderBot Voiceflow Interface" style="width: 100%; max-width: 1200px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      <p class="content-text" style="text-align: center; margin-top: 1rem; font-style: italic; opacity: 0.8;">Screenshot of WanderBot logic design in Voiceflow</p>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Project overview</h2>
+      <p class="content-text">
+        The WanderBot project emerged from the need to simplify travel planning. Traditional travel planning often involves juggling multiple websites, apps, and resources, creating friction for users who want quick, personalized recommendations.
+      </p>
+      
+      <p class="content-text">
+        WanderBot provides a streamlined, interactive experience that guides users through the planning process step-by-step. The chatbot asks targeted questions about preferences, budget, and travel style to generate customized itineraries that match individual needs.
+      </p>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Design process</h2>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        The design process involved thinking about what kind of a bot WanderBot should be, what should the bot personality be, writing up some sample scripts and gathering training data.
+      </p>
+
+      <div class="parallax-container" style="margin-top: -1rem;">
+        <div class="design-process-section parallax-fixed">
+          <div class="process-content">
+            <div class="process-icon">
+              ☀️
+            </div>
+            <h3 class="process-title">Bot Description</h3>
+            <p class="process-text">A chatbot that understands text input and provides a text output.</p>
+            <p class="process-text">The main use cases - Trip planning and destination exploration.</p>
+          </div>
+
+          <div class="process-image">
+            <img src="../projects/wanderbot/images/bot description.png" alt="WanderBot Bot Description" style="width: 100%; height: auto; border-radius: 0.5rem;" />
+          </div>
+        </div>
+
+        <div class="parallax-overlay">
+          <div class="design-process-section">
+            <div class="process-content">
+              <div class="process-icon">
+                🔧
+              </div>
+              <h3 class="process-title">Personality Design</h3>
+              <p class="process-text">Interaction goals -  provide users with personalized and tailored itineraries to plan their travel journeys.</p>
+              <p class="process-text"> Character traits - Focused, Knowledgeable, Responsive, Adaptable, Friendly, Professional.</p>
+            </div>
+
+            <div class="process-image">
+              <img src="../projects/wanderbot/images/bot personality.png" alt="WanderBot Bot Personality" style="width: 100%; height: auto; border-radius: 0.5rem;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF; margin-top: -3rem;">
+      <p class="content-text">
+        Link to the detailed design process document: <a href="https://www.figma.com/board/NDxuUVdqCjm3dpLHxJDRr1/Bot-Design-Lalita-Chavan?node-id=0-1&t=v7BrMbJIgDuSzD3L-1" target="_blank" rel="noopener noreferrer">WanderBot Design Process</a>
+      </p>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Testing protocol</h2>
+      <p class="content-text">
+        To validate WanderBot's effectiveness, I conducted user testing sessions with potential travelers to evaluate the chatbot's usability, conversation flow, and ability to provide helpful travel recommendations.
+      </p>
+      
+      <p class="content-text">
+        A link to the detailed testing protocol can be found here: <a href="https://docs.google.com/document/d/1JFUyxr1RjCsvP8A2ZrTA00-Si5Fhlwe8jdnJ0IBwbVc/edit?usp=sharing" target="_blank" rel="noopener noreferrer">WanderBot Testing Protocol</a>
+      </p>
+    </div>
+
+    <div class="content-section-below">
+      <div class="content-column-left">
+        <img src="../projects/wanderbot/images/voiceflow prototype.png" alt="WanderBot Voiceflow Prototype" style="width: 100%; height: 100%; object-fit: cover; object-position: right center; border-radius: 0.5rem;" />
+      </div>
+
+      <div class="content-column-right">
+        <div class="content-section">
+          <h2 class="content-title">Final Design & Conclusion</h2>
+          <p class="content-text">
+            The final WanderBot design features a conversational interface that guides users through travel planning with natural, context-aware interactions. The bot successfully balances automation with user control, allowing travelers to specify their preferences while receiving personalized recommendations.
+          </p>
+          
+          <p class="content-text">
+            Key design elements include clear conversation flows, helpful prompts for user input, and transparent communication about the bot's capabilities.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2 class="content-title">Protoype link</h2>
+          <p class="content-text">
+            Here's the link to the prototype: <a href="https://creator.voiceflow.com/prototype/66021d1de0853d4e25ec3550" target="_blank" rel="noopener noreferrer">WanderBot Prototype</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Next steps & Key learnings</h2>
+      
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem; margin-top: 1rem;">Next Steps</h3>
+      <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">Implement button-based interaction options alongside conversational interface to provide users with clear action choices and reduce input friction.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Expand utterance coverage across all intents to capture diverse user expressions and improve natural language understanding accuracy.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Add comprehensive safety information features including destination safety ratings, health advisories, and emergency contact resources.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Integrate connectivity guidance covering SIM card options, data plans, WiFi availability, and communication solutions for different countries.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Incorporate rich media responses including destination images, interactive 3D map views, and curated links for deeper exploration of recommended locations.</li>
+      </ul>
+      
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem;">Key Learnings</h3>
+      <ul style="margin-left: 1.5rem;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">I had initially designed a bot that had no turn taking sequence. If the bot is not a LLM it is very important to implement turn taking. It makes it easy for the users to understand when the bot is done answering. Also, it makes it easy for the users to just answer the question the bot posts.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Designing bot personalities takes research and effort. How the bot responds heavily depends on its personality and it makes or breaks the conversation. Also, the bot personality needs to be aligned with the brand identity.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <strong>Contact me</strong><br />
+      a4.lalita.chavan@gmail.com
+    </div>
+    <div>
+      <strong>Connect with me</strong><br />
+      LinkedIn
+    </div>
+    <div>
+      <strong>Go to top</strong>
+    </div>
+  </footer>
+</body>
+</html>
