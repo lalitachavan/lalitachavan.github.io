@@ -80,7 +80,7 @@
       background: #FFFFFF;
       color: #0D0D0D;
       width: 50%;
-      padding: 4rem 4rem 4rem 4rem;
+      padding: 4rem 8rem 4rem 8rem;
       display: flex;
       flex-direction: column;
     }
@@ -192,6 +192,26 @@
       width: 50%;
       display: flex;
       flex-direction: column;
+    }
+
+    /* Match index.html Read more button styling */
+    .read-more-btn {
+      background-color: #872654;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .read-more-btn:hover {
+      background-color: #6b1e42;
     }
 
     footer {
@@ -314,76 +334,168 @@
     <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
       <h2 class="content-title">Project goal</h2>
       <p class="content-text" style="margin-bottom: 2rem;">Evaluate the usability of the Airpals website's Order flow and gather feedback on user’s expectations after placing an order.</p>
-      
+    </div>
+
+    <div class="content-section" style="padding: 0.5rem 8rem 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">My contribution</h2>
+      <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">Analyzed Google analytics data to identify pain points on the Airpals website.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Worked closely with the team to design and script a user test that aligned with research objectives.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Conducted participant recruitment, moderated 2 remote user testing sessions and took notes for other 2 sessions.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Collaborated with the team to analyze findings and develop recommendations.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Created mockup and prototype, and drafted findings and recommendations for the "Review" page of the order form and the error messages displayed on the form.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Actively took part in drafting the final presentation and report.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Presented the findings and recommendations to the client.</li>
+      </ul>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">The Process</h2>
+
+      <!-- Step 1 -->
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.8rem; font-weight: 400; color: #0D0D0D; margin-top: 1rem; margin-bottom: 1rem;">Step 1: Project kickoff meeting with the client</h3>
+      <p class="content-text" style="margin-bottom: 1.25rem;">
+        During the kickoff meeting, we acquainted ourselves with the Airpals team and took the time to understand their goals and objectives for the project. We gathered crucial insights into their target users and business strategy. The Airpals team requested that we prioritize usability testing on specific key areas of their website and review their Google Analytics data to identify any pain points that should be included in our study. Additionally, they expressed a desire for us to gain an understanding of user frustrations when using their website.
+      </p>
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; font-style: italic; font-weight: 600; margin: 0.5rem 0 0.5rem 0;">Meeting outcome</p>
+      <ul style="margin-left: 1.5rem; margin-bottom: 2.5rem;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">Received information regarding existing user personas created by the Airpals team which would feed into our target participant definition.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Determined 2 key areas of focus for our study: the pick-up and delivery scheduling form and the order confirmation email.</li>
+      </ul>
+
+      <!-- Step 2 -->
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.8rem; font-weight: 400; color: #0D0D0D; margin-top: 2rem; margin-bottom: 1rem;">Step 2: Preparation</h3>
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Defining target participants + developing a recruitment strategy</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        Using the information obtained during the kick-off meeting and the existing personas developed by the Airpals team, we established our target participant profile. Given that our target participants needed to be employed and over 18 years old, we determined that the most effective recruitment strategy would be to email a screener to the Pratt Students distribution list and post it on our social media accounts.
+      </p>
+
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Defining the research objective</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        Our research objective was to obtain both qualitative insights into user perceptions and behaviors, as well as quantitative data, with the intention of generating robust evidence to support our project goal.
+      </p>
+
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Designing the test</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        To conduct our usability tests, we created a script that included a scenario, 2 tasks, post-task questions, questionnaire, and post-test questions, questionnaire. The post-task and post-test questions enabled us to collect qualitative data, while the post-task and post-test questionnaire facilitated the gathering of quantitative insights, as specified by the client and defined in our research objective.
+      </p>
+
+      <div class="content-section" style="padding: 1rem 8rem; background-color: #FFFFFF;">
       <div style="display: flex; justify-content: center;">
-        <img src="../assets/images/Voiceflow hero image.png" alt="Airpals Usability Study" style="width: 100%; max-width: 1200px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+        <img src="../projects/airpals/images/pretest questions.png" alt="Pre-test materials" style="width: 100%; max-width: 900px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
       </div>
-      <p class="content-text" style="text-align: center; margin-top: 1rem; font-style: italic; opacity: 0.8;">Airpals website order form analysis</p>
+      <p class="content-text" style="text-align: center; margin-top: 0.75rem; font-style: italic; opacity: 0.85;">Pre-test questions, task, scenario, post-task questions and post-test questions</p>
+      </div>
+
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Conducting pilot sessions</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        To refine the script and questions, we conducted 5 pilot tests. During these tests, we closely observed participant behavior and identified any issues or areas for improvement in the script. For instance, we discovered that some of the task instructions were vague or repetitive and required revisions to enhance clarity. Moreover, we recognized that the second task outlined in the script did not provide significant value to the research and made the test longer than the desired duration. As a result, we chose to eliminate the second task for the usability sessions conducted with the recruited participants.
+      </p>
+
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Recruiting participants</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        The screener was carefully crafted to ensure that only participants who matched the target demographic would qualify for the study. Out of 18 responses received, we selected 11 participants who best matched the target participant profile to participate in the usability test. Although 11 participants were recruited, 8 were retained as the best fit for the user group, and the results reflect the responses of those retained.
+      </p>
+
+      <!-- Step 3 -->
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.8rem; font-weight: 400; color: #0D0D0D; margin-top: 2rem; margin-bottom: 1rem;">Step 3: Data Collection</h3>
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Scheduling sessions</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        We reached out to the 11 selected participants with additional information and provided them with a Doodle link to indicate their availability. Using the participants' preferred time slots, we scheduled Zoom meetings for the remote usability testing sessions. To ensure the smooth running of each 30-minute session, we assigned a moderator and a notetaker to oversee the testing.
+      </p>
+
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Conducting sessions + Collecting data</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        We conducted 11 remote moderated user testing sessions over zoom. This allowed us to observe and record participant behavior as they shared their screen and navigated through the order form to complete the task. As previously stated, we used a combination of verbal questions and a Google Form questionnaire to collect both qualitative and quantitative data.
+      </p>
+
+      <div class="content-section" style="padding: 1rem 8rem; background-color: #FFFFFF;">
+      <div style="display: flex; justify-content: center;">
+        <img src="../projects/airpals/images/user testing session.png" alt="Pre-test materials" style="width: 100%; max-width: 900px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      <p class="content-text" style="text-align: center; margin-top: 0.75rem; font-style: italic; opacity: 0.85;">Screenshot from a user testing session conducted on Zoom</p>
+      </div>
+
+      <!-- Step 4 -->
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.8rem; font-weight: 400; color: #0D0D0D; margin-top: 2rem; margin-bottom: 1rem;">Step 4: Data Analysis</h3>
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Review + Group data based on usability issues</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        After completing the usability testing sessions, we reviewed the data collected through the notetaker Google Form. To analyze the feedback, we utilized a digital grouping spreadsheet and applied a thematic analysis approach to classify the data based on common user frustrations, behaviors, or pain points observed during the testing.
+      </p>
+
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Identify key usability issues</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        We assessed the issues identified in the previous step based on their severity and frequency, considering how badly the issue affected the usability of the form and how often it occurred during the test sessions. We then prioritized them accordingly to identify key issues and determine solutions for them.
+      </p>
+
+      <div class="content-section" style="padding: 1rem 8rem; background-color: #FFFFFF;">
+      <div style="display: flex; justify-content: center;">
+        <img src="../projects/airpals/images/digital grouping sheet.png" alt="Pre-test materials" style="width: 100%; max-width: 900px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      <p class="content-text" style="text-align: center; margin-top: 0.75rem; font-style: italic; opacity: 0.85;">Snapshot of the digital grouping Google Sheet</p>
+      </div>
+
+      <!-- Step 5 -->
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.8rem; font-weight: 400; color: #0D0D0D; margin-top: 2rem; margin-bottom: 1rem;">Step 5: Communication</h3>
+      <p style="font-family: 'EB Garamond', serif; color: #8b2654; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin: 0.25rem 0.25rem 1rem 0;">Report + Presentation</p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        Based on our analysis, we identified key issues and recommendations which we presented to the client through a comprehensive report and presentation.
+      </p>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; align-items: center;">
+        <a class="read-more-btn" href="../projects/airpals/documents/Airpals User Testing Presentation.pdf" target="_blank" rel="noopener">Link to presentation</a>
+        <a class="read-more-btn" href="../projects/airpals/documents/Airpals User Testing Report.pdf" target="_blank" rel="noopener">Link to report</a>
+      </div>
     </div>
 
     <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
-      <h2 class="content-title">Project overview</h2>
-      <p class="content-text">
-        The Airpals usability study emerged from the need to optimize the user experience of the order form on the Airpals website. Users were experiencing difficulties completing their orders, leading to high abandonment rates and frustrated customers.
-      </p>
-      
-      <p class="content-text">
-        Our team conducted comprehensive usability testing to identify pain points in the current order form flow. Through systematic testing and analysis, we uncovered key usability issues and provided actionable recommendations to improve the overall user experience and conversion rates.
-      </p>
+      <h2 class="content-title">Overall Findings</h2>
+      <div class="content-section" style="padding: 1rem 8rem; background-color: #FFFFFF;">
+      <div style="display: flex; justify-content: center;">
+        <img src="../projects/airpals/images/overall findings.png" alt="Pre-test materials" style="width: 100%; max-width: 700px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      </div>
+    </div>
+    
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Key recommendations</h2>
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.8rem; font-weight: 400; color: #0D0D0D; margin-top: 1rem; margin-bottom: 1rem;">Recommendation 1: Streamline the flow for inputting parcel details</h3>
+    <div class="content-section" style="padding: 1rem 8rem; background-color: #FFFFFF;">
+      <div style="display: flex; justify-content: center;">
+        <img src="../projects/airpals/images/recommendation 1 problem.png" alt="Pre-test materials" style="width: 100%; max-width: 800px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <img src="../projects/airpals/images/recommendation 1 solution.png" alt="Pre-test materials" style="width: 100%; max-width: 800px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      </div>
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.8rem; font-weight: 400; color: #0D0D0D; margin-top: 1rem; margin-bottom: 1rem;">Recommendation 2: Clarify pick-up and drop-off instructions</h3>
+      <div class="content-section" style="padding: 1rem 8rem; background-color: #FFFFFF;">
+      <div style="display: flex; justify-content: center;">
+        <img src="../projects/airpals/images/recommendation 2 problem.png" alt="Pre-test materials" style="width: 100%; max-width: 800px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <img src="../projects/airpals/images/recommendation 2 solution.png" alt="Pre-test materials" style="width: 100%; max-width: 800px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      </div>
     </div>
 
     <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
-      <h2 class="content-title">Research methodology</h2>
-      <p class="content-text">
-        Our approach combined multiple research methods to gain comprehensive insights into user behavior and preferences. We employed both qualitative and quantitative methods to ensure robust findings.
-      </p>
+      <h2 class="content-title">Client testimonial by Joshe Ordonez, Airpals Founder</h2>
+      <p class="content-text" style="margin-bottom: 2rem;">"I want to express my sincere gratitude for all the hard work and dedication you put into this project. Your contributions will be of tremendous help, and we're excited to implement your feedback."</p>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Next steps & Key learnings</h2>
       
-      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem; margin-top: 2rem;">Testing Methods</h3>
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem; margin-top: 1rem;">Next Steps</h3>
       <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
-        <li class="content-text" style="margin-bottom: 0.5rem;">Moderated usability testing sessions via Zoom.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Task-based scenarios to simulate real user journeys.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Post-test interviews to gather qualitative feedback.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Quantitative analysis of completion rates and error patterns.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Comparative analysis with industry best practices.</li>
-      </ul>
-    </div>
-
-    <div class="content-section-below">
-      <div class="content-column-left">
-        <img src="../assets/images/Voiceflow hero image.png" alt="Airpals Testing Results" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;" />
-      </div>
-
-      <div class="content-column-right">
-        <div class="content-section">
-          <h2 class="content-title">Key findings</h2>
-          <p class="content-text">
-            Our usability study revealed several critical issues affecting user experience and order completion rates. The most significant findings centered around navigation confusion, form complexity, and unclear error messaging.
-          </p>
-          
-          <p class="content-text">
-            Users struggled with the multi-step form process, particularly in understanding progress indicators and recovering from input errors. These insights formed the foundation for our comprehensive redesign recommendations.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
-      <h2 class="content-title">Recommendations & Impact</h2>
-      
-      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem; margin-top: 1rem;">Key Recommendations</h3>
-      <ul style="margin-left: 1.5rem; margin-bottom: 2rem;">
-        <li class="content-text" style="margin-bottom: 0.5rem;">Simplify the form structure by reducing the number of required fields and consolidating related information.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Implement clear progress indicators to help users understand their position in the order process.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Improve error messaging with specific, actionable guidance for form corrections.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Add inline validation to provide immediate feedback on form inputs.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Enhance mobile responsiveness to improve the experience across all device types.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">The option to place a one-time order as a guest, rather than requiring users to sign in.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Expanding the service to include regular users instead of only catering to businesses.</li>
       </ul>
       
-      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem;">Key Learnings</h3>
+      <h3 style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: #8b2654; margin-bottom: 1rem;">Key Learning</h3>
       <ul style="margin-left: 1.5rem;">
-        <li class="content-text" style="margin-bottom: 0.5rem;">User testing revealed insights that were not apparent from heuristic evaluation alone, emphasizing the value of direct user feedback.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Small changes in form design can have significant impacts on completion rates and user satisfaction.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Collaborative analysis within the team helped identify patterns and prioritize recommendations effectively.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Client Management - Initially, our client had agreed to help us recruit 30% of the participants and had assumed that they could attend the sessions for the participants they had recruited and conduct a mock test session with our team. We discovered this misunderstanding during our mid-project check-in meeting, which was likely due to inadequate communication of the project's scope and limitations. To address the issue, we sent an email that clarified the project's scope and limitations, which helped to clear up the confusion. This experience taught me the importance of clarifying project scope and limitations at the outset of a project.</li>
       </ul>
     </div>
   </div>

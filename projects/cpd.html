@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Continuing Professional Development (CPD) - Lalita Chavan Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: #0D0D0D;
+      background-color: #FFFFFF;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      flex-wrap: wrap;
+      background-color: #FFFFFF;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 80px;
+      transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 3rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0D0D0D;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0;
+    }
+
+    .main-section {
+      display: flex;
+      height: calc(100vh - 144px);
+      margin-top: 144px;
+    }
+
+    .sidebar {
+      background: #FFFFFF;
+      color: #0D0D0D;
+      width: 50%;
+      padding: 4rem 2rem 4rem 8rem; /* further reduced right padding */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-category-tag {
+      background: #8b2654;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 2rem;
+    }
+
+    .project-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 4rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .project-subtitle {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+    }
+
+    .project-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .detail-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    .detail-content {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .main-content {
+      background-color: #FFFFFF;
+      width: 50%;
+      padding: 0;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* keep image centered */
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 400px;
+      background-color: #ddd;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-style: italic;
+    }
+
+    .content-section {
+      margin-bottom: 0;
+    }
+
+    .content-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #8b2654;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #0D0D0D;
+    }
+
+    .content-section-below {
+      background-color: #FFFFFF;
+      padding: 2rem 8rem;
+      display: flex;
+      gap: 4rem;
+    }
+
+    .content-column-left {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content-column-right {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .design-process-section {
+      background-color: #FFFFFF;
+      padding: 2rem 8rem;
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .process-content {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .process-icon {
+      width: 120px;
+      height: 120px;
+      background-color: #E8D5E0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+    }
+
+    .process-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #0D0D0D;
+      margin-bottom: 1rem;
+    }
+
+    .process-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #0D0D0D;
+    }
+
+    .process-image {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .parallax-container {
+      position: relative;
+      height: 200vh;
+    }
+
+    .parallax-fixed {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      z-index: 1;
+    }
+
+    .parallax-overlay {
+      position: absolute;
+      top: 100vh;
+      width: 100%;
+      background-color: #FFFFFF;
+      z-index: 2;
+      min-height: 100vh;
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    footer div {
+      margin: 0.5rem 0;
+    }
+
+    /* Insights section */
+    .insights {
+      padding: 2rem 8rem;
+      background-color: #FFFFFF;
+    }
+    .insights-intro {
+      text-align: left; /* was center */
+      margin: 0.5rem 0 2rem 0; /* remove auto centering */
+      max-width: 900px;
+    }
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .insight-card {
+      border: 1px solid #ead7df; /* soft tint aligned with brand */
+      background: #FFFCFA;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+    }
+    .insight-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #F0E2E8;
+      color: #8b2654;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .insight-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0D0D0D;
+      margin-bottom: 0.75rem;
+    }
+    .insight-list li {
+      margin-left: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .insights-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .insights {
+        padding: 2rem;
+      }
+      .insights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .main-section {
+        flex-direction: column;
+      }
+
+      .sidebar,
+      .main-content {
+        width: 100%;
+        padding: 2rem;
+      }
+
+      .content-section-below {
+        padding: 2rem;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .content-column-left,
+      .content-column-right {
+        width: 100%;
+      }
+
+      .design-process-section {
+        padding: 2rem;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .process-content,
+      .process-image {
+        width: 100%;
+      }
+
+      .parallax-container {
+        height: auto;
+      }
+
+      .parallax-fixed {
+        position: relative;
+        height: auto;
+      }
+
+      .parallax-overlay {
+        position: relative;
+        top: 0;
+      }
+
+      .sidebar {
+        padding-top: 6rem;
+      }
+
+      .project-title {
+        font-size: 2.5rem;
+      }
+
+      .project-title::after {
+        font-size: 2rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../assets/logo/Logo wine.svg" alt="Lalita Chavan Logo" />
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#resume">Resume</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="main-section">
+      <div class="sidebar">
+        <div>
+          <div class="project-category-tag">UI Design</div>
+          <h1 class="project-title">CPD Application</h1>
+          <p class="project-subtitle">Continuing Professional Development (CPD) - A mobile application to help surgeons record their professional development activities.</p>
+          
+          <div class="project-details">
+            <div class="detail-item">
+              <div class="detail-label">My Role</div>
+              <div class="detail-content">UX Researcher, UI Designer</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Timeline</div>
+              <div class="detail-content">3 months</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Focus</div>
+              <div class="detail-content">Help surgeons record their professional development activities with ease.</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Tools</div>
+              <div class="detail-content">Adobe XD, Adobe Illustrator</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <img src="cpd/images/cpd hero image.png" alt="CPD app hero image" style="max-width: 90%; max-height: 90%; object-fit: contain;" />
+      </div>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Background</h2>
+      <p class="content-text" style="margin-bottom: 2rem;">The Royal Australasian College of surgeons (RACS) is a non-profit organisation that trains surgeons and maintains surgical standards in Australia and New Zealand.  The Continuing Professional Development (CPD) application helps surgeons manage their professional development activities and mandatory requirements required by the medical boards for continued registration. </p>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">My role</h2>
+      <ul style="margin-left: 1.5rem; margin-bottom: 0;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">I analysed the existing CPD desktop application and conducted user interviews (both internal and external) to understand what worked and what did not for the target audience</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">conducted competitor analysis</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">created wireframes and low-fidelity to high-fidelity prototypes.</li>
+      </ul>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Problem</h2>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        Surgeons are extremely time-poor and recording activities for professional development is not the most important task that they have to perform in the day, Though it is extremely important to record them to be able to practice surgery in Australia and New Zealand.
+      </p>
+      <p class="content-text" style="margin-bottom: 1rem;">
+        Adding activities using the desktop application was time consuming and a desktop/laptop was not accessible all the time. The desktop application wasn’t responsive.
+      </p>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Solution</h2>
+      <p class="content-text">
+        The solution was designing and developing a mobile application that:
+      </p>
+      <ul style="margin-left: 1.5rem; margin-bottom: 0;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">could be accessed anywhere</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">was intuitive for the surgeons</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">enhanced the surgeons' user experience</li>
+      </ul>
+    </div>
+
+    <!-- Insights section (added) -->
+    <section class="insights">
+      <h2 class="content-title">The Process</h2> <!-- removed inline center align -->
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-icon" aria-hidden="true">💬</div>
+          <div class="insight-title">Competitor Analysis</div>
+          <ul class="insight-list">
+            <li class="content-text">Analyzed CPD applications by Ausmed</li>
+            <li class="content-text">ANZCA</li>
+            <li class="content-text">RACGP</li>
+            <li class="content-text">CPDme and</li>
+            <li class="content-text">ANMF</li>
+          </ul>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon" aria-hidden="true">📋</div>
+          <div class="insight-title">Interviews</div>
+          <ul class="insight-list">
+            <li class="content-text">Conducted 34 external and</li>
+            <li class="content-text">8 internal interviews</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Final Design</h2>
+      <div class="content-section" style="padding: 1rem 8rem; background-color: #FFFFFF;">
+      <div style="display: flex; justify-content: center;">
+        <img src="../projects/cpd/images/high fidelity prototypes.png" alt="Pre-test materials" style="width: 100%; max-width: 900px; height: auto; object-fit: cover; border-radius: 0.5rem;" />
+      </div>
+      <p class="content-text" style="text-align: center; margin-top: 0.75rem; font-style: italic; opacity: 0.85;">High Fidelity Prototype of the CPD application</p>
+      </div>
+    </div>
+
+    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+      <h2 class="content-title">Key learnings</h2>
+      
+      <ul style="margin-left: 1.5rem;">
+        <li class="content-text" style="margin-bottom: 0.5rem;">User feedback and user testing are key to good design. Asking for user feedback from time to time helped me fine-tune the designs.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Competitor analysis broadens understanding. The competitor analysis helped me gain insights into what was working well with a similar user group and I could build on it.</li>
+        <li class="content-text" style="margin-bottom: 0.5rem;">Do not be fixated on the first design. I couldn’t look past my first design since it appealed to me and I held on to it. But taking a step back and visualising different ways the data could be represented helped me make the use of real estate on the screen better.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <strong>Contact me</strong><br />
+      a4.lalita.chavan@gmail.com
+    </div>
+    <div>
+      <strong>Connect with me</strong><br />
+      LinkedIn
+    </div>
+    <div>
+      <strong>Go to top</strong>
+    </div>
+  </footer>
+</body>
+</html>
