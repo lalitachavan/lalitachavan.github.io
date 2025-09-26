@@ -64,6 +64,139 @@
       opacity: 0.8;
     }
 
+    /* Hamburger toggle (hidden by default) */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      position: relative;
+    }
+    .menu-toggle .bar {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      height: 2px;
+      background: #0D0D0D;
+      content: '';
+      display: block;
+      transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.25s ease;
+    }
+    .menu-toggle .bar:nth-child(1) { top: 14px; }
+    .menu-toggle .bar:nth-child(2) { top: 21px; }
+    .menu-toggle .bar:nth-child(3) { top: 28px; }
+    header.open .menu-toggle .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    header.open .menu-toggle .bar:nth-child(2) { opacity: 0; }
+    header.open .menu-toggle .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile/portrait tablet nav behavior */
+    @media (max-width: 1024px) {
+      .menu-toggle { display: block; margin-left: auto; }
+      nav { 
+        position: fixed; 
+        top: 0; 
+        right: -66.67%; 
+        width: 66.67%; 
+        height: 100vh; 
+        background: rgba(255, 255, 255, 0.98); 
+        backdrop-filter: blur(10px); 
+        padding: 7rem 2rem 2rem 2rem; 
+        flex-direction: column; 
+        gap: 2rem; 
+        box-shadow: -8px 0 24px rgba(0,0,0,0.08);
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 998;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      header.open nav { right: 0; }
+      
+      /* Close button in mobile menu - only visible on smaller devices */
+      .menu-close {
+        display: none;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: none;
+        border: none;
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+        z-index: 999;
+      }
+      
+      header.open .menu-close {
+        display: block;
+      }
+      
+      .menu-close::before,
+      .menu-close::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 2px;
+        background: #0D0D0D;
+        transform-origin: center;
+      }
+      
+      .menu-close::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      
+      .menu-close::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+      
+      /* Menu items positioning */
+      nav a {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+      }
+      
+      nav a:first-child {
+        margin-top: 0;
+      }
+      
+      /* Keep header inline layout on small screens for proper toggle alignment */
+      header { flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: nowrap; }
+      
+      /* Add overlay for mobile menu */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 997;
+      }
+      
+      body.menu-open::before {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      body.menu-open {
+        overflow: hidden;
+      }
+    }
+
+    /* Ensure close button is never visible on desktop */
+    @media (min-width: 1025px) {
+      .menu-close {
+        display: none !important;
+      }
+    }
+
     .container {
       display: flex;
       flex-direction: column;
@@ -229,6 +362,9 @@
     }
 
     @media (max-width: 768px) {
+      /* Make logo smaller on mobile to be proportionate to hamburger */
+      .logo img { height: 50px; }
+      
       .container {
         flex-direction: column;
       }
@@ -282,7 +418,13 @@
         <img src="../assets/logo/Logo wine.svg" alt="Lalita Chavan Logo" />
       </a>
     </div>
-    <nav>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav id="primary-nav">
+      <button class="menu-close" aria-label="Close menu"></button>
       <a href="../index.html">Home</a>
       <a href="../index.html#projects">Projects</a>
       <a href="../index.html#about">About</a>
@@ -515,5 +657,59 @@
       <strong>Go to top</strong>
     </div>
   </footer>
+
+  <script>
+    // Mobile hamburger menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const headerEl = document.querySelector('header');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menuClose = document.querySelector('.menu-close');
+      const nav = document.getElementById('primary-nav');
+      const body = document.body;
+      
+      function closeMenu() {
+        headerEl.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        body.classList.remove('menu-open');
+      }
+      
+      function openMenu() {
+        headerEl.classList.add('open');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        body.classList.add('menu-open');
+      }
+      
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isOpen = headerEl.classList.contains('open');
+          if (isOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+        
+        // Close button functionality
+        if (menuClose) {
+          menuClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeMenu();
+          });
+        }
+        
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          closeMenu();
+        }));
+        
+        // Close menu when clicking overlay
+        document.addEventListener('click', function(e) {
+          if (headerEl.classList.contains('open') && !headerEl.contains(e.target) && !nav.contains(e.target)) {
+            closeMenu();
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,244 +1,808 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Training Management Platform (TMP) - Lalita Chavan Portfolio</title>
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Management Platform (TMP) - Lalita Chavan Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body { font-family: 'Lato', sans-serif; color: #0D0D0D; background-color: #FFFFFF; }
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #0D0D0D;
+            background-color: #FFFFFF;
+        }
 
-    header { position: fixed; width: 100%; top: 0; left: 0; z-index: 999; display: flex; justify-content: space-between; align-items: center; padding: 2rem; flex-wrap: wrap; background-color: #FFFFFF; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            flex-wrap: wrap;
+            background-color: #FFFFFF;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    .logo { display: flex; align-items: center; }
-    .logo img { height: 80px; transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
 
-    nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 3rem; }
-    nav a { text-decoration: none; color: #0D0D0D; font-weight: 700; font-size: 1rem; }
-    nav a:hover { opacity: 0.8; }
+        .logo img {
+            height: 80px;
+            transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    .container { display: flex; flex-direction: column; margin-top: 0; }
-    .main-section { display: flex; height: calc(100vh - 144px); margin-top: 144px; }
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 3rem;
+        }
 
-    .sidebar { background: #FFFFFF; color: #0D0D0D; width: 50%; padding: 4rem 2rem 4rem 8rem; display: flex; flex-direction: column; }
+        nav a {
+            text-decoration: none;
+            color: #0D0D0D;
+            font-weight: 700;
+            font-size: 1rem;
+        }
 
-    .project-category-tag { background: #8b2654; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: inline-block; width: fit-content; margin-bottom: 2rem; }
+        nav a:hover {
+          opacity: 0.8;
+        }
 
-    .project-title { font-family: 'EB Garamond', serif; font-size: 4rem; font-weight: 400; line-height: 1.1; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
-    .project-subtitle { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.2rem; font-weight: 400; margin-bottom: 3rem; opacity: 0.9; }
+        /* Hamburger toggle (hidden by default) */
+        .menu-toggle {
+          display: none;
+          background: none;
+          border: 0;
+          width: 44px;
+          height: 44px;
+          cursor: pointer;
+          position: relative;
+        }
+        .menu-toggle .bar {
+          position: absolute;
+          left: 8px;
+          right: 8px;
+          height: 2px;
+          background: #0D0D0D;
+          content: '';
+          display: block;
+          transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.25s ease;
+        }
+        .menu-toggle .bar:nth-child(1) { top: 14px; }
+        .menu-toggle .bar:nth-child(2) { top: 21px; }
+        .menu-toggle .bar:nth-child(3) { top: 28px; }
+        header.open .menu-toggle .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        header.open .menu-toggle .bar:nth-child(2) { opacity: 0; }
+        header.open .menu-toggle .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    .project-details { display: flex; flex-direction: column; gap: 2rem; }
-    .detail-item { display: flex; flex-direction: column; gap: 0.5rem; }
-    .detail-label { font-family: 'Lato', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
-    .detail-content { font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.4; }
-
-    .main-content { background-color: #FFFFFF; width: 50%; padding: 0; overflow-y: auto; display: flex; align-items: center; justify-content: center; }
-
-    .image-placeholder { width: 100%; height: 400px; background-color: #ddd; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: #888; font-style: italic; }
-
-    .content-section { margin-bottom: 0; }
-    .content-title { font-family: 'EB Garamond', serif; font-size: 2.5rem; font-weight: 400; color: #8b2654; margin-bottom: 1.5rem; }
-    .content-text { font-family: 'Lato', sans-serif; font-size: 1.1rem; line-height: 1.6; color: #0D0D0D; }
-
-    .content-section-below { background-color: #FFFFFF; padding: 2rem 8rem; display: flex; gap: 4rem; }
-    .content-column-left { width: 50%; display: flex; align-items: center; justify-content: center; }
-    .content-column-right { width: 50%; display: flex; flex-direction: column; }
-
-    .design-process-section { background-color: #FFFFFF; padding: 2rem 8rem; display: flex; gap: 4rem; align-items: center; }
-    .process-content { width: 50%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .process-icon { width: 120px; height: 120px; background-color: #E8D5E0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; font-size: 2.5rem; }
-    .process-title { font-family: 'EB Garamond', serif; font-size: 1.8rem; font-weight: 400; color: #0D0D0D; margin-bottom: 1rem; }
-    .process-text { font-family: 'Lato', sans-serif; font-size: 1rem; line-height: 1.5; color: #0D0D0D; }
-    .process-image { width: 50%; display: flex; align-items: center; justify-content: center; }
-
-    .parallax-container { position: relative; height: 200vh; }
-    .parallax-fixed { position: sticky; top: 0; height: 100vh; z-index: 1; }
-    .parallax-overlay { position: absolute; top: 100vh; width: 100%; background-color: #FFFFFF; z-index: 2; min-height: 100vh; }
-
-    footer { background-color: #000; color: #fff; padding: 2rem; display: flex; justify-content: space-around; flex-wrap: wrap; font-size: 0.9rem; }
-    footer div { margin: 0.5rem 0; }
-
-    /* Insights section */
-    .insights { padding: 2rem 8rem; background-color: #FFFFFF; }
-    .insights-intro { text-align: left; margin: 0.5rem 0 2rem 0; max-width: 900px; }
-    .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .insight-card { border: 1px solid #ead7df; background: #FFFCFA; border-radius: 12px; padding: 1.5rem 2rem; }
-    .insight-icon { width: 44px; height: 44px; border-radius: 50%; background: #F0E2E8; color: #8b2654; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1rem; }
-    .insight-title { font-family: 'EB Garamond', serif; font-size: 1.5rem; font-weight: 600; color: #0D0D0D; margin-bottom: 0.75rem; }
-    .insight-list li { margin-left: 1rem; margin-bottom: 0.5rem; }
-
-    @media (max-width: 1024px) { .insights-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 768px) {
-      .insights { padding: 2rem; }
-      .insights-grid { grid-template-columns: 1fr; }
-      .container { flex-direction: column; }
-      .main-section { flex-direction: column; }
-      .sidebar, .main-content { width: 100%; padding: 2rem; }
-      .content-section-below { padding: 2rem; flex-direction: column; gap: 2rem; }
-      .content-column-left, .content-column-right { width: 100%; }
-      .design-process-section { padding: 2rem; flex-direction: column; gap: 2rem; }
-      .process-content, .process-image { width: 100%; }
-      .parallax-container { height: auto; }
-      .parallax-fixed { position: relative; height: auto; }
-      .parallax-overlay { position: relative; top: 0; }
-      .sidebar { padding-top: 6rem; }
-      .project-title { font-size: 2.5rem; }
-      .project-title::after { font-size: 2rem; }
-      header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      nav { width: 100%; justify-content: space-between; }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <a href="../index.html" aria-label="Home">
-        <img src="../assets/logo/Logo wine.svg" alt="Lalita Chavan Logo" />
-      </a>
-    </div>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="../index.html#projects">Projects</a>
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#resume">Resume</a>
-    </nav>
-  </header>
-
-  <div class="container">
-    <div class="main-section">
-      <div class="sidebar">
-        <div>
-          <div class="project-category-tag">UX Research</div>
-          <h1 class="project-title">Training Management Platform (TMP)</h1>
-          <p class="project-subtitle">Web application to help trainee doctors record and view their training progress.</p>
+        /* Mobile/portrait tablet nav behavior */
+        @media (max-width: 1024px) {
+          .menu-toggle { display: block; margin-left: auto; }
+          nav { 
+            position: fixed; 
+            top: 0; 
+            right: -66.67%; 
+            width: 66.67%; 
+            height: 100vh; 
+            background: rgba(255, 255, 255, 0.98); 
+            backdrop-filter: blur(10px); 
+            padding: 7rem 2rem 2rem 2rem; 
+            flex-direction: column; 
+            gap: 2rem; 
+            box-shadow: -8px 0 24px rgba(0,0,0,0.08);
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 998;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+          }
+          header.open nav { right: 0; }
           
-          <div class="project-details">
-            <div class="detail-item">
-              <div class="detail-label">My Role</div>
-              <div class="detail-content">UX Researcher, UI Designer</div>
-            </div>
+          /* Close button in mobile menu - only visible on smaller devices */
+          .menu-close {
+            display: none;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 999;
+          }
+          
+          header.open .menu-close {
+            display: block;
+          }
+          
+          .menu-close::before,
+          .menu-close::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 2px;
+            background: #0D0D0D;
+            transform-origin: center;
+          }
+          
+          .menu-close::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+          }
+          
+          .menu-close::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+          }
+          
+          /* Menu items positioning */
+          nav a {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+          }
+          
+          nav a:first-child {
+            margin-top: 0;
+          }
+          
+          /* Keep header inline layout on small screens for proper toggle alignment */
+          header { flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: nowrap; }
+          
+          /* Add overlay for mobile menu */
+          body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 997;
+          }
+          
+          body.menu-open::before {
+            opacity: 1;
+            visibility: visible;
+          }
+          
+          body.menu-open {
+            overflow: hidden;
+          }
+        }
+
+        /* Ensure close button is never visible on desktop */
+        @media (min-width: 1025px) {
+          .menu-close {
+            display: none !important;
+          }
+        }        
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 0;
+        }
+
+        .main-section {
+            display: flex;
+            height: calc(100vh - 144px);
+            margin-top: 144px;
+        }
+
+        .sidebar {
+            background: #FFFFFF;
+            color: #0D0D0D;
+            width: 50%;
+            padding: 4rem 2rem 4rem 8rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-category-tag {
+            background: #8b2654;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            width: fit-content;
+            margin-bottom: 2rem;
+        }
+
+        .project-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .project-subtitle {
+            font-family: 'EB Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .project-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .detail-label {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .detail-content {
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .main-content {
+            background-color: #FFFFFF;
+            width: 50%;
+            padding: 0;
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+        }
+
+        .content-section {
+            margin-bottom: 0;
+        }
+
+        .content-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: #8b2654;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-text {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #0D0D0D;
+        }
+
+        .content-section-below {
+            background-color: #FFFFFF;
+            padding: 2rem 8rem;
+            display: flex;
+            gap: 4rem;
+        }
+
+        .content-column-left {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-column-right {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .design-process-section {
+            background-color: #FFFFFF;
+            padding: 2rem 8rem;
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .process-content {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .process-icon {
+            width: 120px;
+            height: 120px;
+            background-color: #E8D5E0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .process-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #0D0D0D;
+            margin-bottom: 1rem;
+        }
+
+        .process-text {
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #0D0D0D;
+        }
+
+        .process-image {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parallax-container {
+            position: relative;
+            height: 200vh;
+        }
+
+        .parallax-fixed {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 100vh;
+            width: 100%;
+            background-color: #FFFFFF;
+            z-index: 2;
+            min-height: 100vh;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        footer div {
+            margin: 0.5rem 0;
+        }
+
+        /* Insights section */
+        .insights {
+            padding: 2rem 8rem;
+            background-color: #FFFFFF;
+        }
+
+        .insights-intro {
+            text-align: left;
+            margin: 0.5rem 0 2rem 0;
+            max-width: 900px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .insight-card {
+            border: 1px solid #ead7df;
+            background: #FFFCFA;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+        }
+
+        .insight-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #F0E2E8;
+            color: #8b2654;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .insight-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0D0D0D;
+            margin-bottom: 0.75rem;
+        }
+
+        .insight-list li {
+            margin-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .insights-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Make logo smaller on mobile to be proportionate to hamburger */
+            .logo img { height: 50px; }
             
-            <div class="detail-item">
-              <div class="detail-label">Timeline</div>
-              <div class="detail-content">4 months</div>
+            .insights {
+                padding: 2rem;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+
+            .main-section {
+                flex-direction: column;
+            }
+
+            .sidebar,
+            .main-content {
+                width: 100%;
+                padding: 2rem;
+            }
+
+            .content-section-below {
+                padding: 2rem;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .content-column-left,
+            .content-column-right {
+                width: 100%;
+            }
+
+            .design-process-section {
+                padding: 2rem;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .process-content,
+            .process-image {
+                width: 100%;
+            }
+
+            .parallax-container {
+                height: auto;
+            }
+
+            .parallax-fixed {
+                position: relative;
+                height: auto;
+            }
+
+            .parallax-overlay {
+                position: relative;
+                top: 0;
+            }
+
+            .sidebar {
+                padding-top: 6rem;
+            }
+
+            .project-title {
+                font-size: 2.5rem;
+            }
+
+            .project-title::after {
+                font-size: 2rem;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html" aria-label="Home">
+                <img src="../assets/logo/Logo wine.svg" alt="Lalita Chavan Logo" />
+            </a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav id="primary-nav">
+            <button class="menu-close" aria-label="Close menu"></button>
+            <a href="../index.html">Home</a>
+            <a href="../index.html#projects">Projects</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#resume">Resume</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main-section">
+            <div class="sidebar">
+                <div>
+                    <div class="project-category-tag">UX Research</div>
+                    <h1 class="project-title">Training Management Platform (TMP)</h1>
+                    <p class="project-subtitle">Web application to help trainee doctors record and view their training
+                        progress.</p>
+
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <div class="detail-label">My Role</div>
+                            <div class="detail-content">UX Researcher, UI Designer</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Timeline</div>
+                            <div class="detail-content">4 months</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Focus</div>
+                            <div class="detail-content">Conduct user research and design wireframes for a web app that
+                                helps trainee doctors record and view their training progress.</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Tools</div>
+                            <div class="detail-content">Adobe XD, Adobe Illustrator</div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="main-content">
+                <img src="../projects/tmp/images/tmp hero image.png" alt="TMP hero image"
+                    style="max-width: 90%; max-height: 90%; object-fit: contain;" />
+            </div>
+        </div>
+
+        <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+            <h2 class="content-title">Background</h2>
+            <p class="content-text" style="margin-bottom: 2rem;">The Royal Australasian College of Surgeons (RACS) is a
+                non-profit organization that trains surgeons and maintains surgical standards in Australia and New
+                Zealand. The Training Management Platform (TMP) application helps doctors training to be surgeons
+                (Trainees) view and record their training journey milestones. It also helps the Trainee supervisors to
+                keep a track of Trainee records and help the Trainees along their journey.</p>
+        </div>
+
+        <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+            <h2 class="content-title">My role</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 0;">
+                <li class="content-text" style="margin-bottom: 0.5rem;">Ran discovery interviews with trainees,
+                    supervisors, and admins.</li>
+                <li class="content-text" style="margin-bottom: 0.5rem;">Owned the design process to create intuitive
+                    layouts, interactions, and transitions.</li>
+                <li class="content-text" style="margin-bottom: 0.5rem;">Created wireframes and iterated medium-fidelity
+                    prototypes.</li>
+            </ul>
+        </div>
+
+        <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+            <h2 class="content-title">Problem</h2>
+            <p class="content-text" style="margin-bottom: 1rem;">The paper-based legacy system demanded a lot of human
+                effort in terms of both time and energy proving inefficient. The Trainees had to manually fill in
+                assessment forms and get them attested by their supervisors. It was a tedious process for the specialty
+                training boards as well to keep a track of all the Trainee records and progress.</p>
+            <p class="content-text" style="margin-bottom: 1rem;">Since it was a paper-based system, no log could be
+                maintained for the assessments undertaken by the Trainees.</p>
+        </div>
+
+        <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+            <h2 class="content-title">Solution</h2>
+            <p class="content-text">Design a centralized web application that:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 0;">
+                <li class="content-text" style="margin-bottom: 0.5rem;">enables Trainees and supervisors to track
+                    progress</li>
+                <li class="content-text" style="margin-bottom: 0.5rem;">enable the specialty training boards to view the
+                    Trainee records</li>
+                <li class="content-text" style="margin-bottom: 0.5rem;">let Trainee's enter and edit their activities
+                </li>
+                <li class="content-text" style="margin-bottom: 0.5rem;">provides clear visibility into progress and gaps
+                </li>
+                <li class="content-text" style="margin-bottom: 0.5rem;">enable RACS to make curriculum changes</li>
+            </ul>
+        </div>
+
+        <section class="insights">
+            <h2 class="content-title">The Process</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon" aria-hidden="true">🔎</div>
+                    <div class="insight-title">Competitor Analysis</div>
+                    <ul class="insight-list">
+                        <li class="content-text">Benchmarked training/portfolio platforms</li>
+                        <li class="content-text">Identified best practices for sign-offs and dashboards</li>
+                    </ul>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon" aria-hidden="true">🗣️</div>
+                    <div class="insight-title">Interviews</div>
+                    <ul class="insight-list">
+                        <li class="content-text">Conducted user research through 1 - 1 interviews and focus groups to
+                            gather key insights to drive UI designs</li>
+                    </ul>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon" aria-hidden="true">🧭</div>
+                    <div class="insight-title">IA & Flows</div>
+                    <ul class="insight-list">
+                        <li class="content-text">Designed IA for activities, assessments, and progress</li>
+                        <li class="content-text">Prototyped core journeys and tested iteratively</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+            <h2 class="content-title">Final Design</h2>
+            <div class="content-section" style="padding: 1rem 8rem; background-color: #FFFFFF;">
+                <div style="display: flex; justify-content: center;">
+                    <video src="../projects/tmp/video/TMP mockup video.mp4" controls playsinline
+                        style="width: 100%; max-width: 900px; height: auto; border-radius: 0.5rem;"></video>
+                </div>
+                <p class="content-text"
+                    style="text-align: center; margin-top: 0.75rem; font-style: italic; opacity: 0.85;">TMP
+                    medium-fidelity prototype (video)</p>
+            </div>
+        </div>
+
+        <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
+            <h2 class="content-title">Key learnings</h2>
+            <ul style="margin-left: 1.5rem;">
+                <li class="content-text" style="margin-bottom: 0.5rem;">Early research aligns stakeholders and reduces
+                    rework</li>
+                <li class="content-text" style="margin-bottom: 0.5rem;">Dashboards must surface actionable next steps
+                </li>
+                <li class="content-text" style="margin-bottom: 0.5rem;">Iterative testing improves data quality and
+                    efficiency</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <strong>Contact me</strong><br />
+            a4.lalita.chavan@gmail.com
+        </div>
+        <div>
+            <strong>Connect with me</strong><br />
+            LinkedIn
+        </div>
+        <div>
+            <strong>Go to top</strong>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const headerEl = document.querySelector('header');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuClose = document.querySelector('.menu-close');
+            const nav = document.getElementById('primary-nav');
+            const body = document.body;
             
-            <div class="detail-item">
-              <div class="detail-label">Focus</div>
-              <div class="detail-content">Conduct user research and design wireframes for a web app that helps trainee doctors record and view their training progress.</div>
-            </div>
+            function closeMenu() {
+                headerEl.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                body.classList.remove('menu-open');
+            }
             
-            <div class="detail-item">
-              <div class="detail-label">Tools</div>
-              <div class="detail-content">Adobe XD, Adobe Illustrator</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="main-content">
-        <img src="../projects/tmp/images/tmp hero image.png" alt="TMP hero image" style="max-width: 90%; max-height: 90%; object-fit: contain;" />
-      </div>
-    </div>
-
-    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
-      <h2 class="content-title">Background</h2>
-      <p class="content-text" style="margin-bottom: 2rem;">The Royal Australasian College of Surgeons (RACS) is a non-profit organization that trains surgeons and maintains surgical standards in Australia and New Zealand.  The Training Management Platform (TMP) application helps doctors training to be surgeons (Trainees) view and record their training journey milestones. It also helps the Trainee supervisors to keep a track of Trainee records and help the Trainees along their journey.</p>
-    </div>
-
-    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
-      <h2 class="content-title">My role</h2>
-      <ul style="margin-left: 1.5rem; margin-bottom: 0;">
-        <li class="content-text" style="margin-bottom: 0.5rem;">Ran discovery interviews with trainees, supervisors, and admins.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Owned the design process to create intuitive layouts, interactions, and transitions.</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Created wireframes and iterated medium-fidelity prototypes.</li>
-      </ul>
-    </div>
-
-    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
-      <h2 class="content-title">Problem</h2>
-      <p class="content-text" style="margin-bottom: 1rem;">The paper-based legacy system demanded a lot of human effort in terms of both time and energy proving inefficient. The Trainees had to manually fill in assessment forms and get them attested by their supervisors. It was a tedious process for the specialty training boards as well to keep a track of all the Trainee records and progress.</p>
-      <p class="content-text" style="margin-bottom: 1rem;">Since it was a paper-based system, no log could be maintained for the assessments undertaken by the Trainees.</p>
-    </div>
-
-    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
-      <h2 class="content-title">Solution</h2>
-      <p class="content-text">Design a centralized web application that:</p>
-      <ul style="margin-left: 1.5rem; margin-bottom: 0;">
-        <li class="content-text" style="margin-bottom: 0.5rem;">enables Trainees and supervisors to track progress</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">enable the specialty training boards to view the Trainee records</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">let Trainee's enter and edit their activities</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">provides clear visibility into progress and gaps</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">enable RACS to make curriculum changes</li>
-      </ul>
-    </div>
-
-    <section class="insights">
-      <h2 class="content-title">The Process</h2>
-      <div class="insights-grid">
-        <div class="insight-card">
-          <div class="insight-icon" aria-hidden="true">🔎</div>
-          <div class="insight-title">Competitor Analysis</div>
-          <ul class="insight-list">
-            <li class="content-text">Benchmarked training/portfolio platforms</li>
-            <li class="content-text">Identified best practices for sign-offs and dashboards</li>
-          </ul>
-        </div>
-        <div class="insight-card">
-          <div class="insight-icon" aria-hidden="true">🗣️</div>
-          <div class="insight-title">Interviews</div>
-          <ul class="insight-list">
-            <li class="content-text">Conducted user research through 1 - 1 interviews and focus groups to gather key insights to drive UI designs</li>
-          </ul>
-        </div>
-        <div class="insight-card">
-          <div class="insight-icon" aria-hidden="true">🧭</div>
-          <div class="insight-title">IA & Flows</div>
-          <ul class="insight-list">
-            <li class="content-text">Designed IA for activities, assessments, and progress</li>
-            <li class="content-text">Prototyped core journeys and tested iteratively</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
-      <h2 class="content-title">Final Design</h2>
-      <div class="content-section" style="padding: 1rem 8rem; background-color: #FFFFFF;">
-        <div style="display: flex; justify-content: center;">
-          <video src="../projects/tmp/video/TMP mockup video.mp4" controls playsinline style="width: 100%; max-width: 900px; height: auto; border-radius: 0.5rem;"></video>
-        </div>
-        <p class="content-text" style="text-align: center; margin-top: 0.75rem; font-style: italic; opacity: 0.85;">TMP medium-fidelity prototype (video)</p>
-      </div>
-    </div>
-
-    <div class="content-section" style="padding: 2rem 8rem; background-color: #FFFFFF;">
-      <h2 class="content-title">Key learnings</h2>
-      <ul style="margin-left: 1.5rem;">
-        <li class="content-text" style="margin-bottom: 0.5rem;">Early research aligns stakeholders and reduces rework</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Dashboards must surface actionable next steps</li>
-        <li class="content-text" style="margin-bottom: 0.5rem;">Iterative testing improves data quality and efficiency</li>
-      </ul>
-    </div>
-  </div>
-
-  <footer>
-    <div>
-      <strong>Contact me</strong><br />
-      a4.lalita.chavan@gmail.com
-    </div>
-    <div>
-      <strong>Connect with me</strong><br />
-      LinkedIn
-    </div>
-    <div>
-      <strong>Go to top</strong>
-    </div>
-  </footer>
+            function openMenu() {
+                headerEl.classList.add('open');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                body.classList.add('menu-open');
+            }
+            
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isOpen = headerEl.classList.contains('open');
+                    if (isOpen) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                });
+                
+                // Close button functionality
+                if (menuClose) {
+                    menuClose.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        closeMenu();
+                    });
+                }
+                
+                nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                    closeMenu();
+                }));
+                
+                // Close menu when clicking overlay
+                document.addEventListener('click', function(e) {
+                    if (headerEl.classList.contains('open') && !headerEl.contains(e.target) && !nav.contains(e.target)) {
+                        closeMenu();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
+
 </html>

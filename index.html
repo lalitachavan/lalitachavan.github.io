@@ -60,6 +60,12 @@
       background-color: #FFFCFA;
     }
 
+    .logo a {
+      text-decoration: none;
+      display: block;
+      line-height: 0;
+    }
+
     .logo img {
       height: 80px;
       transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -149,7 +155,7 @@
     }
 
     .work-section {
-      padding: 4rem 8rem;
+      padding: 4rem 6rem;
     }
 
     .work-section h2 {
@@ -425,46 +431,182 @@
       margin: 0.5rem 0;
     }
 
+    /* Desktop: ensure 3-column layout is maintained */
+    @media (min-width: 769px) {
+      .footer-left {
+        display: flex;
+        gap: 4rem;
+      }
+      
+      .footer-left div {
+        margin: 0.5rem 0;
+      }
+      
+      .footer-right {
+        margin: 0.5rem 0;
+      }
+    }
+
+    /* Mobile footer layout - group first two divs on left, keep third on right */
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-
-      .hero-text h1 {
-        font-size: 2rem;
-      }
-
-      .projects {
-        flex-direction: column;
-      }
-
-      .project {
-        flex: 1 1 100%;
-        max-width: 100%;
-      }
-
-      .hero {
-        padding: 5rem 1.5rem 3rem 1.5rem;
-      }
-
-      .intro {
-        font-size: 0.95rem;
-      }
-
-      nav {
-        width: 100%;
+      footer {
         justify-content: space-between;
+        align-items: flex-start;
       }
-
-      /* Disable hover effects on touch devices */
-      .project:hover .project-front {
-        opacity: 1;
+      
+      .footer-left {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
       }
+      
+      .footer-left div {
+        margin: 0;
+      }
+      
+      .footer-right {
+        margin: 0;
+      }
+    }
 
-      .project:hover .project-back {
+    /* Hamburger toggle (hidden by default) */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      position: relative;
+    }
+    .menu-toggle .bar {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      height: 2px;
+      background: #0D0D0D;
+      content: '';
+      display: block;
+      transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.25s ease;
+    }
+    .menu-toggle .bar:nth-child(1) { top: 14px; }
+    .menu-toggle .bar:nth-child(2) { top: 21px; }
+    .menu-toggle .bar:nth-child(3) { top: 28px; }
+    header.open .menu-toggle .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    header.open .menu-toggle .bar:nth-child(2) { opacity: 0; }
+    header.open .menu-toggle .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile/portrait tablet nav behavior */
+    @media (max-width: 1024px) {
+      .menu-toggle { display: block; margin-left: auto; }
+      nav { 
+        position: fixed; 
+        top: 0; 
+        right: -66.67%; 
+        width: 66.67%; 
+        height: 100vh; 
+        background: rgba(255, 252, 250, 0.98); 
+        backdrop-filter: blur(10px); 
+        padding: 7rem 2rem 2rem 2rem; 
+        flex-direction: column; 
+        gap: 2rem; 
+        box-shadow: -8px 0 24px rgba(0,0,0,0.08);
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 998;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      header.open nav { right: 0; }
+      
+      /* Close button in mobile menu - only visible on smaller devices */
+      .menu-close {
+        display: none;
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: none;
+        border: none;
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+        z-index: 999;
+      }
+      
+      header.open .menu-close {
+        display: block;
+      }
+      
+      .menu-close::before,
+      .menu-close::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 2px;
+        background: #0D0D0D;
+        transform-origin: center;
+      }
+      
+      .menu-close::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      
+      .menu-close::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+      
+      /* Menu items positioning */
+      nav a {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+      }
+      
+      nav a:first-child {
+        margin-top: 0;
+      }
+      
+      /* Keep header inline layout on small screens for proper toggle alignment */
+      header { flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: nowrap; }
+    }
+
+    /* Ensure close button is never visible on desktop */
+    @media (min-width: 1025px) {
+      .menu-close {
+        display: none !important;
+      }
+    }
+
+    /* Ensure contrast in dark footer section */
+    header.footer-bg .menu-toggle .bar { background: #FFFFFF; }
+    @media (max-width: 1024px) {
+      header.footer-bg nav { background: rgba(0, 0, 0, 0.95); }
+      header.footer-bg .menu-close::before,
+      header.footer-bg .menu-close::after { background: #FFFFFF; }
+      
+      /* Add overlay for mobile menu */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
         opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 997;
+      }
+      
+      body.menu-open::before {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      body.menu-open {
+        overflow: hidden;
       }
     }
 
@@ -477,19 +619,171 @@
       .project:hover .project-back {
         opacity: 0;
       }
+
+      /* Smaller hero text for tablets to fit intro text on screen */
+      .hero-text { max-width: 66%; }
+      .hero-text h1 { font-size: 4.5rem; line-height: 0.9; }
+      .intro { font-size: 1.3rem; line-height: 1.4; margin-top: 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      /* Keep logo and hamburger on one line */
+      header { flex-direction: row; justify-content: space-between; align-items: center; gap: 0; flex-wrap: nowrap; }
+
+      /* Make logo smaller on mobile to be proportionate to hamburger */
+      .logo img { height: 50px; }
+
+      /* Increase top padding so hero never sits under fixed header */
+      .hero { padding: 10rem 1.5rem 1.5rem 2rem; }
+
+      /* Make paint blob smaller on mobile */
+      .blob-top-left {
+        width: 600px;
+        height: 600px;
+        top: -180px;
+        right: -150px;
+      }
+
+      .hero-text { max-width: 66%; }
+      .hero-text h1 { font-size: 5.5rem; line-height: 0.9; }
+      .projects { flex-direction: column; }
+      .project { flex: 1 1 100%; max-width: 100%; }
+      .intro { font-size: 1.4rem; line-height: 1.5; }
+
+      /* Make work section text smaller on mobile */
+      .work-section p { font-size: 1.1rem; }
+
+      /* Align work section with header elements on mobile */
+      .work-section { padding: 2rem 3rem; }
+
+      /* Increase project title size on mobile */
+      .project-title { font-size: 2.3rem; }
+
+      /* Reduce project back font sizes for mobile to prevent overflow */
+      .project-back h3 { font-size: 1.8rem; }
+      .project-back h4 { font-size: 1.2rem; }
+      .project-back p { font-size: 0.95rem; }
+      .project-tags { font-size: 0.8rem; }
+      .read-more-btn { font-size: 0.9rem; padding: 0.9rem 1.5rem; min-height: 44px; white-space: nowrap; }
+
+      /* Disable hover effects on touch devices */
+      .project:hover .project-front { opacity: 1; }
+      .project:hover .project-back { opacity: 0; }
+    }
+
+    /* Override tablet styles for mobile phones that also have touch capability */
+    @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
+      .hero-text h1 { font-size: 5.5rem; }
+      .intro { font-size: 1.4rem; line-height: 1.5; margin-top: 3.5rem; }
     }
 
     @media (max-width: 480px) {
+      .hero { padding: 10rem 1rem 1.5rem 2rem; }
+      
+      /* Make paint blob even smaller on small mobile */
+      .blob-top-left {
+        width: 450px;
+        height: 450px;
+        top: -110px;
+        right: -120px;
+      }
+      
+      .hero-text { max-width: 66%; }
       .hero-text h1 {
-        font-size: 1.6rem;
+        font-size: 4rem;
+        line-height: 0.9;
+      }
+
+      .intro {
+        font-size: 1.2rem;
+        line-height: 1.5;
+      }
+
+      /* Make work section text even smaller on small mobile */
+      .work-section p { font-size: 1rem; }
+
+      /* Ensure work section alignment on small mobile */
+      .work-section { padding: 2rem 2rem; }
+
+      .project-title {
+        font-size: 1.8rem;
+      }
+
+      /* Further reduce project back font sizes for small mobile */
+      .project-back h3 { font-size: 1.5rem; }
+      .project-back h4 { font-size: 1rem; }
+      .project-back p { font-size: 0.9rem; }
+      .project-tags { font-size: 0.75rem; }
+      .read-more-btn { font-size: 0.85rem; padding: 0.9rem 1.3rem; min-height: 44px; white-space: nowrap; }
+    }
+
+    /* Mobile landscape orientation adjustments */
+    @media (max-width: 896px) and (max-height: 500px) and (orientation: landscape) {
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 9rem 2rem 3rem 2rem;
+        display: flex;
+        align-items: center;
+      }
+      
+      .hero-text { max-width: 70%; }
+      .hero-text h1 {
+        font-size: 3rem;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+
+      .intro {
+        font-size: 1rem;
+        line-height: 1.4;
+        margin-top: 1rem;
+      }
+
+      /* Align work section with header elements in landscape */
+      .work-section {
+        padding: 2rem 2rem;
+      }
+
+      /* Adjust paint blob for landscape */
+      .blob-top-left {
+        width: 500px;
+        height: 500px;
+        top: -80px;
+        right: -100px;
+      }
+    }
+
+    /* Smaller mobile landscape (phones) */
+    @media (max-width: 736px) and (max-height: 450px) and (orientation: landscape) {
+      .hero {
+        padding: 6rem 1.5rem 2rem 1.5rem;
+      }
+      
+      .hero-text { max-width: 55%; }
+      .hero-text h1 {
+        font-size: 2.5rem;
+        line-height: 0.9;
+        margin-bottom: 0.5rem;
       }
 
       .intro {
         font-size: 0.9rem;
+        line-height: 1.3;
+        margin-top: 0.5rem;
       }
 
-      .project-title {
-        font-size: 1rem;
+      /* Align work section with header elements in small landscape */
+      .work-section {
+        padding: 2rem 1.5rem;
+      }
+
+      /* Further adjust paint blob for small landscape */
+      .blob-top-left {
+        width: 280px;
+        height: 280px;
+        top: -60px;
+        right: -80px;
       }
     }
   </style>
@@ -521,355 +815,484 @@
       }
     });
 
-    // Touch-friendly project card handling
+    // Touch-friendly project card handling + mobile nav toggle
     document.addEventListener('DOMContentLoaded', function() {
+      // Mobile hamburger menu
+      const headerEl = document.querySelector('header');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menuClose = document.querySelector('.menu-close');
+      const nav = document.getElementById('primary-nav');
+      const body = document.body;
+      
+      function closeMenu() {
+        headerEl.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        body.classList.remove('menu-open');
+      }
+      
+      function openMenu() {
+        headerEl.classList.add('open');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        body.classList.add('menu-open');
+      }
+      
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isOpen = headerEl.classList.contains('open');
+          if (isOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+        
+        // Close button functionality
+        if (menuClose) {
+          menuClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeMenu();
+          });
+        }
+        
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          closeMenu();
+        }));
+        
+        // Close menu when clicking overlay
+        document.addEventListener('click', function(e) {
+          if (headerEl.classList.contains('open') && !headerEl.contains(e.target) && !nav.contains(e.target)) {
+            closeMenu();
+          }
+        });
+      }
+
+      // Touch-friendly project cards
       const projects = document.querySelectorAll('.project');
       
-      projects.forEach(project => {
-        let isFlipped = false;
-        
-        project.addEventListener('click', function(e) {
-          // Check if device supports touch
-          if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      // Detect touch capability more reliably
+      const isTouchDevice = (
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0 ||
+        window.matchMedia('(hover: none)').matches ||
+        window.matchMedia('(pointer: coarse)').matches
+      );
+
+      function handleProjectTap(project, e) {
+        const anchor = e.target.closest('a');
+        const isFlipped = project.classList.contains('flipped');
+
+        if (!isFlipped) {
+          // First tap: flip the card
+          e.preventDefault();
+          e.stopPropagation();
+          // Close any other flipped cards first
+          projects.forEach(p => p.classList.remove('flipped'));
+          project.classList.add('flipped');
+        } else {
+          // Card is already flipped
+          if (anchor) {
+            // Second tap on a link: allow navigation
+            // Don't prevent default, let the link work
+            return;
+          } else {
+            // Tap elsewhere on flipped card: close it
             e.preventDefault();
-            
-            // Toggle flip state
-            if (isFlipped) {
-              project.classList.remove('flipped');
-              isFlipped = false;
-            } else {
-              // Remove flipped state from other projects
-              projects.forEach(p => {
-                p.classList.remove('flipped');
-              });
-              
-              project.classList.add('flipped');
-              isFlipped = true;
-            }
-          }
-        });
-        
-        // Reset flip state when clicking outside
-        document.addEventListener('click', function(e) {
-          if (!project.contains(e.target)) {
+            e.stopPropagation();
             project.classList.remove('flipped');
-            isFlipped = false;
           }
-        });
+        }
+      }
+
+      // Apply touch behavior to each project card
+      projects.forEach(project => {
+        if (isTouchDevice) {
+          // Use touchend for better touch response and prevent conflicts with scroll
+          project.addEventListener('touchend', function(e) {
+            const anchor = e.target.closest('a');
+            const isFlipped = project.classList.contains('flipped');
+            
+            // If it's a link on a flipped card, allow normal link behavior
+            if (isFlipped && anchor) {
+              return; // Don't prevent default, allow link to work
+            }
+            
+            // Otherwise handle card flipping
+            e.preventDefault();
+            handleProjectTap(project, e);
+          });
+          
+          // Prevent touchstart from triggering hover states but allow links
+          project.addEventListener('touchstart', function(e) {
+            const anchor = e.target.closest('a');
+            const isFlipped = project.classList.contains('flipped');
+            
+            // Don't prevent default on links in flipped cards
+            if (!(isFlipped && anchor)) {
+              e.preventDefault();
+            }
+          });
+        } else {
+          // Desktop: keep hover behavior, but also handle clicks for accessibility
+          project.addEventListener('click', function(e) {
+            const anchor = e.target.closest('a');
+            if (!anchor) {
+              // Click on card but not on link - toggle flip state
+              e.preventDefault();
+              const isFlipped = project.classList.contains('flipped');
+              if (isFlipped) {
+                project.classList.remove('flipped');
+              } else {
+                projects.forEach(p => p.classList.remove('flipped'));
+                project.classList.add('flipped');
+              }
+            }
+          });
+        }
+      });
+
+      // Close flipped cards when tapping outside
+      document.addEventListener('touchend', function(e) {
+        if (isTouchDevice) {
+          const tappedProject = e.target.closest('.project');
+          if (!tappedProject) {
+            projects.forEach(p => p.classList.remove('flipped'));
+          }
+        }
+      });
+      
+      // Also handle clicks outside for desktop
+      document.addEventListener('click', function(e) {
+        if (!isTouchDevice) {
+          const clickedProject = e.target.closest('.project');
+          if (!clickedProject) {
+            projects.forEach(p => p.classList.remove('flipped'));
+          }
+        }
       });
     });
   </script>
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <a href="index.html" aria-label="Home">
-        <img src="assets/logo/Logo wine.svg" alt="Lalita Chavan Logo" />
-      </a>
-    </div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#resume">Resume</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <div class="paint-blob blob-top-left"></div>
-    <div class="hero-text">
-      <h1>Design does not start with wireframes. It starts with <em>
-        <span>e</span><span>m</span><span>p</span><span>a</span><span>t</span><span>h</span><span>y</span><span>.</span>
-      </em></h1>
-      <p class="intro">Hi, I am Lalita Chavan. I craft experiences that start with empathy, evolve through iterations and delight in the details.</p>
-    </div>
-  </section>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="index.html" aria-label="Home">
+          <img src="assets/logo/Logo wine.svg" alt="Lalita Chavan Logo" />
+        </a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav id="primary-nav">
+        <button class="menu-close" aria-label="Close menu"></button>
+        <a href="#">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#resume">Resume</a>
+      </nav>
+    </header>
 
-  <section class="work-section" id="projects">
-    <div class="pratt-projects">
-      <p><span class="graduation-icon">🎓</span>Pratt Institute (Sep 2022 - May 2024)</p>
-      <div class="projects">
-        <div class="project wanderbot">
-          <div class="project-front">
-            <div class="project-header">
-              <div>
-                <div class="project-title">WanderBot</div>
-                <div class="project-subtitle">A chatbot designed to help with trip planning and destination recommendations.</div>
+    <section class="hero">
+      <div class="paint-blob blob-top-left"></div>
+      <div class="hero-text">
+        <h1>Design does not start with wireframes. It starts with <em>
+          <span>e</span><span>m</span><span>p</span><span>a</span><span>t</span><span>h</span><span>y</span><span>.</span>
+        </em></h1>
+        <p class="intro">Hi, I am Lalita Chavan. I craft experiences that start with empathy, evolve through iterations and delight in the details.</p>
+      </div>
+    </section>
+
+    <section class="work-section" id="projects">
+      <div class="pratt-projects">
+        <p><span class="graduation-icon">🎓</span>Pratt Institute (Sep 2022 - May 2024)</p>
+        <div class="projects">
+          <div class="project wanderbot">
+            <div class="project-front">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">WanderBot</div>
+                  <div class="project-subtitle">A chatbot designed to help with trip planning and destination recommendations.</div>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="projects/wanderbot/images/wanderbot hero image.png" alt="WanderBot Screenshot" />
+              </div>
+              <div class="project-category">Conversational UX</div>
+            </div>
+            <div class="project-back">
+              <div class="project-meta">Solo project • 3 months</div>
+              <div class="project-back-content">
+                <h3>WanderBot</h3>
+                <h4>Project goal</h4>
+                <p>Help users effectively create an itinerary based on their requirements.</p>
+                <h4>My role</h4>
+                <p>Bot Design, Prototyping, Testing</p>
+                <h4>Tools used</h4>
+                <p>Figma, Voiceflow</p>
+              </div>
+              <div class="project-back-meta">
+                <div class="project-tags">Conversational UX • UX Design</div>
+                <a href="projects/wanderbot.html" class="read-more-btn">Read more</a>
               </div>
             </div>
-            <div class="project-image">
-              <img src="projects/wanderbot/images/wanderbot hero image.png" alt="WanderBot Screenshot" />
-            </div>
-            <div class="project-category">Conversational UX</div>
           </div>
-          <div class="project-back">
-            <div class="project-meta">Solo project • 3 months</div>
-            <div class="project-back-content">
-              <h3>WanderBot</h3>
-              <h4>Project goal</h4>
-              <p>Help users effectively create an itinerary based on their requirements.</p>
-              <h4>My role</h4>
-              <p>Bot Design, Prototyping, Testing</p>
-              <h4>Tools used</h4>
-              <p>Figma, Voiceflow</p>
+          
+          <!-- HIDDEN FOR NOW - Purrfect Pixels Project
+          <div class="project purrfect">
+            <div class="project-front">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">Purrfect Pixels</div>
+                  <div class="project-subtitle">An interactive iPad game for cats to engage them through touch-responsive visuals.</div>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="projects/purrfect pixels/purrfect pixels hero.png" alt="Purrfect Pixels Screenshot" />
+              </div>
+              <div class="project-category">Animal Experience Design</div>
             </div>
-            <div class="project-back-meta">
-              <div class="project-tags">Conversational UX • UX Design</div>
-              <a href="projects/wanderbot.html" class="read-more-btn">Read more</a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- HIDDEN FOR NOW - Purrfect Pixels Project
-        <div class="project purrfect">
-          <div class="project-front">
-            <div class="project-header">
-              <div>
-                <div class="project-title">Purrfect Pixels</div>
-                <div class="project-subtitle">An interactive iPad game for cats to engage them through touch-responsive visuals.</div>
+            <div class="project-back">
+              <div class="project-meta">Group project • 4 months</div>
+              <div class="project-back-content">
+                <h3>Purrfect Pixels</h3>
+                <h4>Project goal</h4>
+                <p>Create an engaging digital experience for animal interaction and wellbeing.</p>
+                <h4>My role</h4>
+                <p>UX Research, Interaction Design, Prototyping</p>
+                <h4>Tools used</h4>
+                <p>Figma, Arduino, Processing</p>
+              </div>
+              <div class="project-back-meta">
+                <div class="project-tags">Animal Experience Design • UX Design</div>
+                <button class="read-more-btn">Read more</button>
               </div>
             </div>
-            <div class="project-image">
-              <img src="projects/purrfect pixels/purrfect pixels hero.png" alt="Purrfect Pixels Screenshot" />
-            </div>
-            <div class="project-category">Animal Experience Design</div>
           </div>
-          <div class="project-back">
-            <div class="project-meta">Group project • 4 months</div>
-            <div class="project-back-content">
-              <h3>Purrfect Pixels</h3>
-              <h4>Project goal</h4>
-              <p>Create an engaging digital experience for animal interaction and wellbeing.</p>
-              <h4>My role</h4>
-              <p>UX Research, Interaction Design, Prototyping</p>
-              <h4>Tools used</h4>
-              <p>Figma, Arduino, Processing</p>
+          -->
+          
+          <!-- HIDDEN FOR NOW - E-waste Escapade Project
+          <div class="project ewaste">
+            <div class="project-front">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">E-waste Escapade</div>
+                  <div class="project-subtitle">A cardgame to create awareness regarding e-waste.</div>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
+              </div>
+              <div class="project-category">Sustainable Interaction Design</div>
             </div>
-            <div class="project-back-meta">
-              <div class="project-tags">Animal Experience Design • UX Design</div>
-              <button class="read-more-btn">Read more</button>
-            </div>
-          </div>
-        </div>
-        -->
-        
-        <!-- HIDDEN FOR NOW - E-waste Escapade Project
-        <div class="project ewaste">
-          <div class="project-front">
-            <div class="project-header">
-              <div>
-                <div class="project-title">E-waste Escapade</div>
-                <div class="project-subtitle">A cardgame to create awareness regarding e-waste.</div>
+            <div class="project-back">
+              <div class="project-meta">Solo project • 3 months</div>
+              <div class="project-back-content">
+                <h3>E-waste Escapade</h3>
+                <h4>Project goal</h4>
+                <p>Create awareness regarding e-waste in a fun engaging way.</p>
+                <h4>My role</h4>
+                <p>Game design, Graphic design</p>
+                <h4>Tools used</h4>
+                <p>Adobe Illustrator</p>
+              </div>
+              <div class="project-back-meta">
+                <div class="project-tags">Sustainable Interaction Design • Game Design</div>
+                <button class="read-more-btn">Read more</button>
               </div>
             </div>
-            <div class="project-image">
-              <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
-            </div>
-            <div class="project-category">Sustainable Interaction Design</div>
           </div>
-          <div class="project-back">
-            <div class="project-meta">Solo project • 3 months</div>
-            <div class="project-back-content">
-              <h3>E-waste Escapade</h3>
-              <h4>Project goal</h4>
-              <p>Create awareness regarding e-waste in a fun engaging way.</p>
-              <h4>My role</h4>
-              <p>Game design, Graphic design</p>
-              <h4>Tools used</h4>
-              <p>Adobe Illustrator</p>
-            </div>
-            <div class="project-back-meta">
-              <div class="project-tags">Sustainable Interaction Design • Game Design</div>
-              <button class="read-more-btn">Read more</button>
-            </div>
-          </div>
-        </div>
-        -->
-        
-        <div class="project airpals">
-          <div class="project-front">
-            <div class="project-header">
-              <div>
-                <div class="project-title">Airpals case study</div>
-                <div class="project-subtitle">Enhance the order form experience for the Airpals website by conducting a usability study.</div>
+          -->
+          
+          <div class="project airpals">
+            <div class="project-front">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">Airpals case study</div>
+                  <div class="project-subtitle">Enhance the order form experience for the Airpals website by conducting a usability study.</div>
+                </div>
               </div>
+              <div class="project-image">
+                <img src="projects/airpals/images/airpals hero image.png" alt="Airpals hero image" />
+              </div>
+              <div class="project-category">Usability study</div>
             </div>
-            <div class="project-image">
-              <img src="projects/airpals/images/airpals hero image.png" alt="Airpals hero image" />
-            </div>
-            <div class="project-category">Usability study</div>
-          </div>
-          <div class="project-back">
-            <div class="project-meta">Group project • 4 months</div>
-            <div class="project-back-content">
-              <h3>Airpals case study</h3>
-              <h4>Project goal</h4>
-              <p>Enhance the order form experience for the Airpals website by conducting a usability study.</p>
-              <h4>My role</h4>
-              <p>Usability tester</p>
-              <h4>Tools used</h4>
-              <p>Figma, Google Forms, Google Sheets, Google Docs, Zoom, Doodle</p>
-            </div>
-            <div class="project-back-meta">
-              <div class="project-tags">Usability study</div>
-              <a href="projects/airpals.html" class="read-more-btn">Read more</a>
+            <div class="project-back">
+              <div class="project-meta">Group project • 4 months</div>
+              <div class="project-back-content">
+                <h3>Airpals case study</h3>
+                <h4>Project goal</h4>
+                <p>Enhance the order form experience for the Airpals website by conducting a usability study.</p>
+                <h4>My role</h4>
+                <p>Usability tester</p>
+                <h4>Tools used</h4>
+                <p>Figma, Google Forms, Google Sheets, Google Docs, Zoom, Doodle</p>
+              </div>
+              <div class="project-back-meta">
+                <div class="project-tags">Usability study</div>
+                <a href="projects/airpals.html" class="read-more-btn">Read more</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="racs-projects">
-      <p><span class="work-icon">💼</span>Royal Australasian College of Surgeons (Dec 2018 - Sep 2021)</p>
-      <div class="projects">
-        <div class="project cpd">
-          <div class="project-front">
-            <div class="project-header">
-              <div>
-                <div class="project-title">Continuing Professional Development (CPD)</div>
-                <div class="project-subtitle">A mobile application to help surgeons record their professional development activities.</div>
+      <div class="racs-projects">
+        <p><span class="work-icon">💼</span>Royal Australasian College of Surgeons (Dec 2018 - Sep 2021)</p>
+        <div class="projects">
+          <div class="project cpd">
+            <div class="project-front">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">Continuing Professional Development (CPD)</div>
+                  <div class="project-subtitle">A mobile application to help surgeons record their professional development activities.</div>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="projects/cpd/images/cpd hero image.png" alt="CPD hero image" />
+              </div>
+              <div class="project-category">UI Design</div>
+            </div>
+            <div class="project-back">
+              <div class="project-meta">Solo project • 3 months</div>
+              <div class="project-back-content">
+                <h3>Continuing Professional Development (CPD)</h3>
+                <h4>Project goal</h4>
+                <p>Help surgeons record their professional development activities with ease.</p>
+                <h4>My role</h4>
+                <p>UX Researcher, UI Designer</p>
+                <h4>Tools used</h4>
+                <p>Adobe XD, Adobe Illustrator</p>
+              </div>
+              <div class="project-back-meta">
+                <div class="project-tags">UX Research • UI Design</div>
+                <a href="projects/cpd.html" class="read-more-btn">Read more</a>
               </div>
             </div>
-            <div class="project-image">
-              <img src="projects/cpd/images/cpd hero image.png" alt="CPD hero image" />
-            </div>
-            <div class="project-category">UI Design</div>
           </div>
-          <div class="project-back">
-            <div class="project-meta">Solo project • 3 months</div>
-            <div class="project-back-content">
-              <h3>Continuing Professional Development (CPD)</h3>
-              <h4>Project goal</h4>
-              <p>Help surgeons record their professional development activities with ease.</p>
-              <h4>My role</h4>
-              <p>UX Researcher, UI Designer</p>
-              <h4>Tools used</h4>
-              <p>Adobe XD, Adobe Illustrator</p>
+          
+          <div class="project tmp">
+            <div class="project-front">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">Training Management Platform (TMP)</div>
+                  <div class="project-subtitle">Web application to help trainee doctors record and view their training progress.</div>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="projects/tmp/images/tmp hero image.png" alt="Purrfect Pixels Screenshot" />
+              </div>
+              <div class="project-category">UX Research</div>
             </div>
-            <div class="project-back-meta">
-              <div class="project-tags">UX Research • UI Design</div>
-              <a href="projects/cpd.html" class="read-more-btn">Read more</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project tmp">
-          <div class="project-front">
-            <div class="project-header">
-              <div>
-                <div class="project-title">Training Management Platform (TMP)</div>
-                <div class="project-subtitle">Web application to help trainee doctors record and view their training progress.</div>
+            <div class="project-back">
+              <div class="project-meta">Group project • 4 months</div>
+              <div class="project-back-content">
+                <h3>Training Management Platform (TMP)</h3>
+                <h4>Project goal</h4>
+                <p>Conduct user research and gain insights to design wireframes for the web application that helps trainee doctors record and view their training progress. </p>
+                <h4>My role</h4>
+                <p>UX Researcher, UI Designer</p>
+                <h4>Tools used</h4>
+                <p>Adobe XD, Adobe Illustrator</p>
+              </div>
+              <div class="project-back-meta">
+                <div class="project-tags">UX Reasearch • UI Design</div>
+                <a href="projects/tmp.html" class="read-more-btn">Read more</a>
               </div>
             </div>
-            <div class="project-image">
-              <img src="projects/tmp/images/tmp hero image.png" alt="Purrfect Pixels Screenshot" />
-            </div>
-            <div class="project-category">UX Research</div>
           </div>
-          <div class="project-back">
-            <div class="project-meta">Group project • 4 months</div>
-            <div class="project-back-content">
-              <h3>Training Management Platform (TMP)</h3>
-              <h4>Project goal</h4>
-              <p>Conduct user research and gain insights to design wireframes for the web application that helps trainee doctors record and view their training progress. </p>
-              <h4>My role</h4>
-              <p>UX Researcher, UI Designer</p>
-              <h4>Tools used</h4>
-              <p>Adobe XD, Adobe Illustrator</p>
+          
+          <!-- HIDDEN FOR NOW - RACS Digital Style Guide Project
+          <div class="project style-guide">
+            <div class="project-front">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">RACS Digital Style Guide</div>
+                  <div class="project-subtitle">A style guide for digital assets of the college.</div>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
+              </div>
+              <div class="project-category">UI Design</div>
             </div>
-            <div class="project-back-meta">
-              <div class="project-tags">UX Reasearch • UI Design</div>
-              <a href="projects/tmp.html" class="read-more-btn">Read more</a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- HIDDEN FOR NOW - RACS Digital Style Guide Project
-        <div class="project style-guide">
-          <div class="project-front">
-            <div class="project-header">
-              <div>
-                <div class="project-title">RACS Digital Style Guide</div>
-                <div class="project-subtitle">A style guide for digital assets of the college.</div>
+            <div class="project-back">
+              <div class="project-meta">Solo project • 3 months</div>
+              <div class="project-back-content">
+                <h3>RACS Digital Style Guide</h3>
+                <h4>Project goal</h4>
+                <p>Create a style guide for the college's digital assets to maintain consistency in branding across the different digital products as well as print assets.</p>
+                <h4>My role</h4>
+                <p>UI Designer</p>
+                <h4>Tools used</h4>
+                <p>Adobe InDesign, Adobe Illustrator</p>
+              </div>
+              <div class="project-back-meta">
+                <div class="project-tags">UI Design</div>
+                <button class="read-more-btn">Read more</button>
               </div>
             </div>
-            <div class="project-image">
-              <img src="assets/images/Voiceflow hero image.png" alt="WanderBot Screenshot" />
-            </div>
-            <div class="project-category">UI Design</div>
           </div>
-          <div class="project-back">
-            <div class="project-meta">Solo project • 3 months</div>
-            <div class="project-back-content">
-              <h3>RACS Digital Style Guide</h3>
-              <h4>Project goal</h4>
-              <p>Create a style guide for the college's digital assets to maintain consistency in branding across the different digital products as well as print assets.</p>
-              <h4>My role</h4>
-              <p>UI Designer</p>
-              <h4>Tools used</h4>
-              <p>Adobe InDesign, Adobe Illustrator</p>
-            </div>
-            <div class="project-back-meta">
-              <div class="project-tags">UI Design</div>
-              <button class="read-more-btn">Read more</button>
-            </div>
-          </div>
-        </div>
-        -->
-      </div>
-    </div>
-
-    <!--
-    <div class="monash-projects">
-      <p><span class="graduation-icon">🎓</span>Monash University (Jul 2017 - Jun 2019)</p>
-      <div class="projects">
-        <div class="project monash-app">
-          <div class="project-front">
-            <div class="project-header">
-              <div>
-                <div class="project-title">Ideastic</div>
-                <div class="project-subtitle">An ideation card game.</div>
-              </div>
-            </div>
-            <div class="project-image">
-              <img src="assets/images/Voiceflow hero image.png" alt="Monash App Screenshot" />
-            </div>
-            <div class="project-category">Game Design</div>
-          </div>
-          <div class="project-back">
-            <div class="project-meta">Solo project • 3 months</div>
-            <div class="project-back-content">
-              <h3>Ideastic</h3>
-              <h4>Project goal</h4>
-              <p>A card game to assist you in your ideation session.</p>
-              <h4>My role</h4>
-              <p>Game Designer</p>
-              <h4>Tools used</h4>
-              <p>Adobe Illustrator, Adobe InDesign</p>
-            </div>
-            <div class="project-back-meta">
-              <div class="project-tags">Game Design</div>
-              <button class="read-more-btn">Read more</button>
-            </div>
-          </div>
+          -->
         </div>
       </div>
-    </div>
-    -->
-  </section>
 
-  <footer>
-    <div>
-      <strong>Contact me</strong><br />
-      a4.lalita.chavan@gmail.com
-    </div>
-    <div>
-      <strong>Connect with me</strong><br />
-      LinkedIn
-    </div>
-    <div>
-      <strong>Go to top</strong>
-    </div>
-  </footer>
-</body>
+      <!--
+      <div class="monash-projects">
+        <p><span class="graduation-icon">🎓</span>Monash University (Jul 2017 - Jun 2019)</p>
+        <div class="projects">
+          <div class="project monash-app">
+            <div class="project-front">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">Ideastic</div>
+                  <div class="project-subtitle">An ideation card game.</div>
+                </div>
+              </div>
+              <div class="project-image">
+                <img src="assets/images/Voiceflow hero image.png" alt="Monash App Screenshot" />
+              </div>
+              <div class="project-category">Game Design</div>
+            </div>
+            <div class="project-back">
+              <div class="project-meta">Solo project • 3 months</div>
+              <div class="project-back-content">
+                <h3>Ideastic</h3>
+                <h4>Project goal</h4>
+                <p>A card game to assist you in your ideation session.</p>
+                <h4>My role</h4>
+                <p>Game Designer</p>
+                <h4>Tools used</h4>
+                <p>Adobe Illustrator, Adobe InDesign</p>
+              </div>
+              <div class="project-back-meta">
+                <div class="project-tags">Game Design</div>
+                <button class="read-more-btn">Read more</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      -->
+    </section>
+
+    <footer>
+      <div class="footer-left">
+        <div>
+          <strong>Contact me</strong><br />
+          a4.lalita.chavan@gmail.com
+        </div>
+        <div>
+          <strong>Connect with me</strong><br />
+          LinkedIn
+        </div>
+      </div>
+      <div class="footer-right">
+        <strong>Go to top</strong>
+      </div>
+    </footer>
+  </body>
 </html>
